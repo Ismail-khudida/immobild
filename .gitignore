@@ -1,0 +1,6 @@
+# Große Original-PNGs bleiben lokal – ausgeliefert werden die optimierten WebP/JPG.
+assets/immobild-hero.png
+assets/immobild-production-hero.png
+
+.DS_Store
+.claude/
