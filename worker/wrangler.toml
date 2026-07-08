@@ -1,0 +1,17 @@
+name = "immobild-contact"
+main = "src/index.js"
+compatibility_date = "2026-07-01"
+
+# --- E-Mail-Versand über Cloudflare Email Routing (kostenlos, nur an verifizierte Zieladresse) ---
+# "destination_address" MUSS in Cloudflare unter Email Routing -> Destination addresses
+# als verifiziert eingetragen sein. Nur an diese Adresse darf der Worker senden.
+[[send_email]]
+name = "CONTACT_EMAIL"
+destination_address = "Ismail.khudida@recmo.de"
+
+[vars]
+# Absender: eine Adresse auf einer Domain, die in DIESEM Cloudflare-Account
+# Email Routing aktiv hat (z. B. recmo.de). Das Postfach muss nicht existieren.
+FROM_ADDRESS = "formular@recmo.de"
+# Empfänger (= die verifizierte Zieladresse oben).
+TO_ADDRESS = "Ismail.khudida@recmo.de"

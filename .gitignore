@@ -14,3 +14,7 @@ assets/ba-drone.png
 assets/gen-bedroom.png
 assets/gen-kitchen.png
 assets/gen-pano.png
+
+# Cloudflare Worker – lokale Abhängigkeiten/Build
+worker/node_modules/
+worker/.wrangler/

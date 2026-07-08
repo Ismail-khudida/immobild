@@ -147,26 +147,67 @@ function updateQuote() {
 }
 [packageSelect, objectType, sizeSelect, leerCheck].forEach((el) => el && el.addEventListener("change", updateQuote));
 
+// Nach dem Worker-Deploy hier die URL eintragen, z. B. "https://immobild-contact.<subdomain>.workers.dev"
+const CONTACT_ENDPOINT = "https://immobild-contact.REPLACE-ME.workers.dev";
+
+function fieldVal(id) { const el = document.getElementById(id); return el ? el.value.trim() : ""; }
+
 if (quoteForm) {
-  quoteForm.addEventListener("submit", (e) => {
+  const hint = document.getElementById("formHint");
+  const successBox = document.getElementById("quoteSuccess");
+  const submitBtn = quoteForm.querySelector('button[type="submit"]');
+
+  const fail = (msg) => {
+    if (!hint) return;
+    hint.innerHTML = msg + ' Bitte direkt an <a href="mailto:info@immobild.ai">info@immobild.ai</a> schreiben.';
+    hint.classList.add("is-error");
+  };
+
+  quoteForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const pkg = packageSelect.options[packageSelect.selectedIndex];
-    const size = sizeSelect.options[sizeSelect.selectedIndex];
-    const addr = (document.getElementById("objectAddress").value || "").trim() || "Nicht angegeben";
-    const leer = leerCheck && leerCheck.checked ? "Ja" : "Nein";
-    const subject = `Anfrage Immobild.ai · ${objectType.value} · ${pkg.value}`;
-    const body = [
-      "Guten Tag,", "",
-      "ich möchte ein Objekt anfragen.", "",
-      `Objektart: ${objectType.value}`,
-      `Paket: ${pkg.value}`,
-      `Objektgröße: ${size.value}`,
-      `Leerstand / virtuelle Möblierung: ${leer}`,
-      `Objektadresse: ${addr}`,
-      `Orientierungswert: ${totalPrice.textContent}`, "",
-      "Bitte melden Sie sich mit einem Terminvorschlag.",
-    ].join("\n");
-    window.location.href = `mailto:info@immobild.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if (!quoteForm.reportValidity()) return;
+
+    const payload = {
+      name: fieldVal("cName"),
+      email: fieldVal("cEmail"),
+      phone: fieldVal("cPhone"),
+      objectType: objectType ? objectType.value : "",
+      package: packageSelect ? packageSelect.value : "",
+      size: sizeSelect ? sizeSelect.value : "",
+      furnish: !!(leerCheck && leerCheck.checked),
+      address: fieldVal("objectAddress"),
+      message: fieldVal("cMessage"),
+      price: totalPrice ? totalPrice.textContent : "",
+      company: fieldVal("company"), // Honeypot – bleibt bei echten Nutzern leer
+    };
+
+    if (CONTACT_ENDPOINT.indexOf("REPLACE-ME") !== -1) {
+      fail("Das Formular ist noch nicht scharf geschaltet.");
+      return;
+    }
+
+    const label = submitBtn ? submitBtn.textContent : "";
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Wird gesendet …"; }
+    if (hint) hint.classList.remove("is-error");
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (res.ok && out.ok) {
+        quoteForm.hidden = true;
+        if (successBox) successBox.hidden = false;
+      } else {
+        fail("Senden hat gerade nicht geklappt.");
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = label; }
+      }
+    } catch (_) {
+      fail("Senden hat gerade nicht geklappt.");
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = label; }
+    }
   });
 }
 updateQuote();

@@ -333,8 +333,17 @@
           </div>
 
           <aside class="contact-form-wrap">
-            <form id="quoteForm" class="quote-form">
+            <form id="quoteForm" class="quote-form" novalidate>
               <p class="quote-form-title">Objekt anfragen</p>
+              <label>Name
+                <input id="cName" name="name" type="text" autocomplete="name" required placeholder="Vor- und Nachname">
+              </label>
+              <label>E-Mail
+                <input id="cEmail" name="email" type="email" autocomplete="email" required placeholder="name@makler.de">
+              </label>
+              <label>Telefon <span class="opt">(optional)</span>
+                <input id="cPhone" name="phone" type="tel" autocomplete="tel" placeholder="Für kurze Rückfragen">
+              </label>
               <label>Objektart
                 <select id="objectType" name="objectType">
                   <option value="Wohnung">Wohnung</option>
@@ -359,17 +368,26 @@
                 </select>
               </label>
               <label class="check-row"><input type="checkbox" id="leerCheck" value="Virtuelle Möblierung (Leerstand)" data-price="180"> Leerstand? Virtuelle Möblierung dazu</label>
-              <label>Objektadresse
+              <label>Objektadresse <span class="opt">(optional)</span>
                 <input id="objectAddress" name="objectAddress" type="text" autocomplete="street-address" placeholder="Straße, Ort">
+              </label>
+              <label>Nachricht <span class="opt">(optional)</span>
+                <textarea id="cMessage" name="message" rows="3" placeholder="Wunschtermin, Besonderheiten …"></textarea>
               </label>
               <div class="quote-summary-inline">
                 <span id="summaryText">Wohnung · Premium · 80–160 m²</span>
                 <strong id="totalPrice">ab 919 €</strong>
               </div>
-              <button class="button primary full" type="submit">Anfrage per E-Mail vorbereiten</button>
+              <label class="check-row consent"><input type="checkbox" id="consent" required> Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden (<a href="datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>).</label>
+              <div class="hp" aria-hidden="true"><label>Firma<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
+              <button class="button primary full" type="submit">Anfrage senden</button>
               <noscript><p class="noscript-hint">Bitte JavaScript aktivieren – oder direkt an <a href="mailto:info@immobild.ai">info@immobild.ai</a> schreiben.</p></noscript>
-              <p class="quote-hint">Öffnet Ihr E-Mail-Programm. Ohne Tracking, ohne Formularsystem.</p>
+              <p class="quote-hint" id="formHint">Direkt an uns – ohne Umweg über Ihr E-Mail-Programm.</p>
             </form>
+            <div id="quoteSuccess" class="quote-success" hidden>
+              <strong>Danke, Ihre Anfrage ist da.</strong>
+              <p>Ich melde mich zeitnah bei Ihnen – in der Regel noch am selben Werktag.</p>
+            </div>
           </aside>
         </div>
       </section>
