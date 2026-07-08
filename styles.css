@@ -187,6 +187,12 @@ strong { font-weight: 700; }
 .ba-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
 .ba-note { margin: 14px 0 0; font-size: 14px; }
 
+/* zwei Vorher/Nachher-Slider parallel */
+.ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.ba-item { margin: 0; }
+.ba-item .ba-slider { width: 100%; }
+.ba-item figcaption { margin-top: 12px; text-align: center; font-weight: 700; font-size: 15px; color: var(--ink); }
+
 /* ---------- Leistungen ---------- */
 .dark-section { max-width: none; background: rgba(255,255,255,0.42); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); padding: 92px clamp(20px, 6vw, 40px); }
 .dark-section > * { max-width: var(--maxw); margin-left: auto; margin-right: auto; }
@@ -234,6 +240,27 @@ strong { font-weight: 700; }
 .tour360-hint { position: absolute; left: 0; right: 0; bottom: 16px; z-index: 1; text-align: center; color: rgba(255,255,255,0.82); font-size: 12.5px; }
 @media (max-width: 680px) { .tour360 { aspect-ratio: 4 / 3; } }
 
+/* Eigene 360°-Rundgang-Simulation (Drag-Panorama, keine externen Requests) */
+.pano360 {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--glass-border);
+  background: #0e1413;
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.pano360:active { cursor: grabbing; }
+.pano360-img { position: absolute; top: 50%; left: 0; height: 132%; width: auto; max-width: none; transform: translate3d(0, -50%, 0); will-change: transform; pointer-events: none; }
+.pano360-badge { position: absolute; top: 14px; left: 14px; z-index: 2; }
+.pano360-hint { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 2; padding: 6px 14px; border-radius: 999px; background: rgba(20,23,28,0.6); color: #fff; font-size: 12.5px; font-weight: 600; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 1; transition: opacity 300ms ease; }
+.pano360.is-panning .pano360-hint { opacity: 0; }
+@media (max-width: 680px) { .pano360 { aspect-ratio: 4 / 3; } }
+
 /* ---------- Pakete ---------- */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .price-card { position: relative; padding: 36px 30px; border-radius: var(--radius-lg); transition: transform 240ms var(--ease-out), box-shadow 240ms ease; }
@@ -264,6 +291,10 @@ strong { font-weight: 700; }
 .tool-stat span { color: var(--muted); font-size: 14px; }
 .tool-result .button { margin-top: 6px; }
 .tool-result small { font-size: 12px; line-height: 1.5; }
+.tool-stats { display: grid; gap: 14px; margin: 4px 0; }
+.tool-stats .tool-stat strong { font-size: 34px; }
+.tool-form label { position: relative; }
+.tool-form output { grid-column: 2; }
 
 /* ---------- Persönlich + Kontakt ---------- */
 .contact-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: start; }
@@ -276,6 +307,12 @@ strong { font-weight: 700; }
 .contact-list span { min-width: 72px; color: var(--muted); }
 .contact-list a { color: var(--ink); font-weight: 600; }
 .contact-list a:hover { color: var(--accent); }
+
+.steps { list-style: none; counter-reset: step; margin: 20px 0; padding: 0; display: grid; gap: 14px; }
+.steps li { position: relative; padding-left: 46px; }
+.steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 800; font-size: 14px; }
+.steps strong { display: block; color: var(--ink); font-size: 15px; }
+.steps span { color: var(--muted); font-size: 14px; }
 
 .quote-form { padding: 28px; border-radius: var(--radius-lg); display: grid; gap: 14px; }
 .quote-form-title { margin: 0; font-weight: 700; font-size: 17px; }
@@ -339,7 +376,7 @@ body.reveal-ready .section.is-visible { opacity: 1; transform: translateY(0); }
   body.menu-open .nav { display: flex; }
   .nav a { font-size: 16px; padding: 8px 0; }
   .hero { grid-template-columns: 1fr; gap: 36px; padding-top: 132px; }
-  .deliverables, .pricing-grid, .gallery, .tool, .contact-grid { grid-template-columns: 1fr; }
+  .deliverables, .pricing-grid, .gallery, .tool, .contact-grid, .ba-grid { grid-template-columns: 1fr; }
   .gallery-lg { grid-row: auto; }
   .gallery-lg img, .gallery-item img { aspect-ratio: 3/2; }
   .contact-person { grid-template-columns: 1fr; }

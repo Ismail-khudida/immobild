@@ -28,7 +28,7 @@ if (menuButton && nav) {
   const frame = document.querySelector(".stage-frame");
   const buttons = Array.from(document.querySelectorAll(".stage-modes button"));
   if (!frame || !buttons.length) return;
-  const modes = ["kamera", "drohne", "3d"];
+  const modes = ["kamera", "drohne", "360"];
   const imgs = Array.from(document.querySelectorAll(".stage-img"));
   let i = 0, timer = null;
 
@@ -47,52 +47,45 @@ if (menuButton && nav) {
   start();
 })();
 
-/* ---------- Vorher / Nachher slider ---------- */
-(function beforeAfter() {
-  const slider = document.querySelector(".ba-slider");
-  const range = document.querySelector(".ba-range");
-  if (!slider || !range) return;
-  const before = slider.querySelector(".ba-before");
-  const after = slider.querySelector(".ba-after");
-  const badgeB = slider.querySelector(".ba-badge-before");
-  const badgeA = slider.querySelector(".ba-badge-after");
+/* ---------- Vorher / Nachher Slider (mehrere parallel) ---------- */
+document.querySelectorAll(".ba-slider").forEach((slider) => {
+  const range = slider.querySelector(".ba-range");
+  if (!range) return;
+  const set = (v) => slider.style.setProperty("--pos", v + "%");
+  range.addEventListener("input", () => set(range.value));
+  set(range.value);
+});
 
-  function setPos(v) { slider.style.setProperty("--pos", v + "%"); }
-  range.addEventListener("input", () => setPos(range.value));
-  setPos(range.value);
-
-  document.querySelectorAll(".ba-tab").forEach((tab) => {
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".ba-tab").forEach((t) => { t.classList.remove("is-active"); t.setAttribute("aria-selected", "false"); });
-      tab.classList.add("is-active");
-      tab.setAttribute("aria-selected", "true");
-      if (before) before.src = tab.dataset.before;
-      if (after) after.src = tab.dataset.after;
-      if (badgeB) badgeB.textContent = tab.dataset.beforeLabel || "Vorher";
-      if (badgeA) badgeA.textContent = tab.dataset.afterLabel || "Nachher";
-      range.value = 50; setPos(50);
-    });
-  });
-})();
-
-/* ---------- 3D-Rundgang: Klick-zum-Laden (DSGVO) ---------- */
-(function tour360() {
-  const box = document.getElementById("tour360");
+/* ---------- 360°-Rundgang: eigene Drag-Panorama-Simulation ---------- */
+(function pano360() {
+  const box = document.getElementById("pano360");
   if (!box) return;
-  const cover = box.querySelector(".tour360-cover");
-  if (!cover) return;
-  cover.addEventListener("click", () => {
-    const f = document.createElement("iframe");
-    f.src = box.dataset.src;
-    f.title = "360-Grad-Rundgang";
-    f.loading = "lazy";
-    f.setAttribute("allowfullscreen", "true");
-    f.setAttribute("allowvr", "true");
-    f.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; vr";
-    box.innerHTML = "";
-    box.appendChild(f);
-    box.classList.add("is-loaded");
+  const img = box.querySelector(".pano360-img");
+  if (!img) return;
+  let x = 0, dragging = false, startX = 0, startVal = 0, dir = -1, auto = canAnimate;
+
+  const getMax = () => Math.max(0, img.offsetWidth - box.offsetWidth);
+  function apply() { img.style.transform = "translate3d(" + x + "px, -50%, 0)"; }
+  function clamp() { const m = getMax(); x = Math.max(-m, Math.min(0, x)); apply(); }
+  function loop() {
+    const m = getMax();
+    if (auto && !dragging && m > 0) {
+      x += dir * Math.max(0.3, m / 1600);
+      if (x <= -m) { x = -m; dir = 1; } else if (x >= 0) { x = 0; dir = -1; }
+      apply();
+    }
+    requestAnimationFrame(loop);
+  }
+  box.addEventListener("pointerdown", (e) => {
+    dragging = true; auto = false; startX = e.clientX; startVal = x;
+    box.classList.add("is-panning");
+    try { box.setPointerCapture(e.pointerId); } catch (_) {}
   });
+  box.addEventListener("pointermove", (e) => { if (dragging) { x = startVal + (e.clientX - startX); clamp(); } });
+  const end = () => { dragging = false; };
+  box.addEventListener("pointerup", end);
+  box.addEventListener("pointercancel", end);
+  requestAnimationFrame(loop);
 })();
 
 /* ---------- Makler-Rechner ---------- */
@@ -106,6 +99,7 @@ if (menuButton && nav) {
   const zOut = document.getElementById("roiZeitOut");
   const mehr = document.getElementById("roiMehr");
   const stunden = document.getElementById("roiStunden");
+  const euro = document.getElementById("roiEuro");
 
   function update() {
     const o = Number(objekte.value), a = Number(anfragen.value), z = Number(zeit.value);
@@ -116,6 +110,7 @@ if (menuButton && nav) {
     const extra = Math.round(o * a * 0.6);
     if (mehr) mehr.textContent = "+" + extra.toLocaleString("de-DE");
     if (stunden) stunden.textContent = (o * z) + " h";
+    if (euro) euro.textContent = (o * z * 50).toLocaleString("de-DE") + " €";
   }
   [objekte, anfragen, zeit].forEach((el) => el.addEventListener("input", update));
   update();
