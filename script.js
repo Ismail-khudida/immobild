@@ -156,7 +156,7 @@ if (quoteForm) {
     const leer = leerCheck && leerCheck.checked ? "Ja" : "Nein";
     const subject = `Anfrage Immobild.ai · ${objectType.value} · ${pkg.value}`;
     const body = [
-      "Hallo Ismail,", "",
+      "Guten Tag,", "",
       "ich möchte ein Objekt anfragen.", "",
       `Objektart: ${objectType.value}`,
       `Paket: ${pkg.value}`,
@@ -164,7 +164,7 @@ if (quoteForm) {
       `Leerstand / virtuelle Möblierung: ${leer}`,
       `Objektadresse: ${addr}`,
       `Orientierungswert: ${totalPrice.textContent}`, "",
-      "Bitte melde dich mit Terminvorschlag.",
+      "Bitte melden Sie sich mit einem Terminvorschlag.",
     ].join("\n");
     window.location.href = `mailto:info@immobild.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
