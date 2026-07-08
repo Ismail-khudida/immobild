@@ -75,6 +75,26 @@ if (menuButton && nav) {
   });
 })();
 
+/* ---------- 3D-Rundgang: Klick-zum-Laden (DSGVO) ---------- */
+(function tour360() {
+  const box = document.getElementById("tour360");
+  if (!box) return;
+  const cover = box.querySelector(".tour360-cover");
+  if (!cover) return;
+  cover.addEventListener("click", () => {
+    const f = document.createElement("iframe");
+    f.src = box.dataset.src;
+    f.title = "360-Grad-Rundgang";
+    f.loading = "lazy";
+    f.setAttribute("allowfullscreen", "true");
+    f.setAttribute("allowvr", "true");
+    f.allow = "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; vr";
+    box.innerHTML = "";
+    box.appendChild(f);
+    box.classList.add("is-loaded");
+  });
+})();
+
 /* ---------- Makler-Rechner ---------- */
 (function roi() {
   const objekte = document.getElementById("roiObjekte");

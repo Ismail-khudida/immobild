@@ -202,7 +202,37 @@ strong { font-weight: 700; }
 .gallery-lg { grid-row: span 2; }
 .gallery-lg img { aspect-ratio: 3/4; }
 .gallery-item figcaption { position: absolute; left: 14px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 999px; background: rgba(20,23,28,0.6); color: #fff; font-size: 13px; font-weight: 600; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.badge-360 { display: inline-grid; place-items: center; width: 30px; height: 20px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 10px; font-weight: 800; }
+.badge-360 { display: inline-grid; place-items: center; width: 34px; height: 22px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 800; }
+
+/* 3D-Rundgang (Klick-zum-Laden) */
+.tour360-block { margin-top: 24px; }
+.tour360-intro { margin-bottom: 16px; }
+.tour360-intro h3 { display: inline-flex; align-items: center; gap: 10px; font-size: 22px; }
+.tour360-intro p { color: var(--muted); max-width: 70ch; }
+.tour360 {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  aspect-ratio: 16 / 9;
+}
+.tour360 iframe { width: 100%; height: 100%; border: 0; display: block; }
+.tour360-cover {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  padding: 0; border: 0; margin: 0;
+  background: none; cursor: pointer;
+  display: grid; place-items: center; align-content: center;
+}
+.tour360-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.66); transition: transform 600ms var(--ease-out); }
+.tour360-cover:hover img { transform: scale(1.04); }
+.tour360-play { position: relative; z-index: 1; display: grid; place-items: center; width: 78px; height: 78px; border-radius: 999px; background: rgba(255,255,255,0.92); color: var(--ink); font-size: 24px; padding-left: 5px; box-shadow: var(--shadow-lg); transition: transform 200ms var(--ease-out); }
+.tour360-cover:hover .tour360-play { transform: scale(1.06); }
+.tour360-label { position: relative; z-index: 1; margin-top: 16px; color: #fff; font-weight: 700; font-size: 18px; }
+.tour360-hint { position: absolute; left: 0; right: 0; bottom: 16px; z-index: 1; text-align: center; color: rgba(255,255,255,0.82); font-size: 12.5px; }
+@media (max-width: 680px) { .tour360 { aspect-ratio: 4 / 3; } }
 
 /* ---------- Pakete ---------- */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
