@@ -3,10 +3,10 @@ main = "src/index.js"
 compatibility_date = "2026-07-01"
 
 [vars]
-# Absender: MUSS eine in deinem Resend-Account verifizierte Domain sein.
-# Format: "Anzeigename <adresse@domain>". Passe die Domain an, falls in Resend
-# eine andere Domain als immobild.ai verifiziert ist.
-FROM_ADDRESS = "Immobild.ai <anfrage@immobild.ai>"
+# Absender: recmo.de ist in Resend verifiziert (Status: Verified, EU-Region Irland),
+# daher als Absenderdomain genutzt. Jede Adresse @recmo.de ist möglich (kein echtes
+# Postfach nötig); Antworten gehen per Reply-To an den Kunden.
+FROM_ADDRESS = "Immobild.ai <anfrage@recmo.de>"
 # Empfänger der Anfragen.
 TO_ADDRESS = "ismail.khudida@recmo.de"
 

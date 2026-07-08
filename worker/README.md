@@ -5,16 +5,11 @@ Nimmt das Kontaktformular von immobild.ai entgegen und verschickt die Anfrage
 Cloudflare-Account (du hast dort schon Worker), Resend übernimmt den Mailversand.
 Die immobild.ai-Weiterleitung bei Namecheap bleibt komplett unangetastet.
 
-## Voraussetzungen (in Resend, einmalig)
+## Voraussetzungen (in Resend)
 
-1. **Sende-Domain verifizieren**: In Resend → *Domains* → immobild.ai hinzufügen.
-   Resend zeigt dir 2–3 DNS-Einträge (DKIM + SPF/MX, alle auf einer `send.`-
-   Subdomain bzw. einem `resend._domainkey`-Eintrag). Diese bei Namecheap
-   hinzufügen. **Wichtig:** Das sind neue Einträge auf einer Subdomain – die
-   bestehende E-Mail-Weiterleitung (`@`-MX) wird dabei nicht angefasst.
-   *(Falls in deinem Resend-Account bereits eine andere Domain verifiziert ist,
-   kannst du auch die nehmen und in `wrangler.toml` `FROM_ADDRESS` entsprechend
-   ändern – dann entfällt Schritt 1.)*
+1. **Sende-Domain**: `recmo.de` ist in deinem Resend-Account bereits **verifiziert**
+   (Status: Verified, EU-Region). Sie ist in `wrangler.toml` als `FROM_ADDRESS`
+   (`anfrage@recmo.de`) eingetragen – hier ist nichts weiter zu tun. Kein DNS nötig.
 2. **API-Key erzeugen**: In Resend → *API Keys* → einen Key mit Sende-Recht
    anlegen und kopieren (beginnt mit `re_`).
 
