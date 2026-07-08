@@ -1,7 +1,8 @@
-import { EmailMessage } from "cloudflare:email";
-import { createMimeMessage } from "mimetext";
+// Nimmt das Kontaktformular von immobild.ai entgegen und verschickt die Anfrage
+// per Resend (https://resend.com) an das Zielpostfach. Kein Framework, keine
+// Abhängigkeiten – kann per `wrangler deploy` ODER per Copy-&-Paste in den
+// Cloudflare-Dashboard-Editor deployt werden.
 
-// Nur Anfragen von der eigenen Website zulassen (CORS).
 const ALLOWED_ORIGINS = new Set([
   "https://immobild.ai",
   "https://www.immobild.ai",
@@ -36,6 +37,8 @@ export default {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers });
     if (request.method !== "POST") return json({ ok: false, error: "method" }, 405, headers);
 
+    if (!env.RESEND_API_KEY) return json({ ok: false, error: "config" }, 500, headers);
+
     let data;
     try {
       data = await request.json();
@@ -43,7 +46,7 @@ export default {
       return json({ ok: false, error: "invalid_json" }, 400, headers);
     }
 
-    // Honeypot: echte Nutzer lassen dieses Feld leer. Bots füllen es -> still "ok", aber nichts senden.
+    // Honeypot: echte Nutzer lassen dieses Feld leer. Bots füllen es -> still "ok", nichts senden.
     if (clean(data.company)) return json({ ok: true }, 200, headers);
 
     const name = clean(data.name);
@@ -82,20 +85,29 @@ export default {
       .filter((l) => l !== null)
       .join("\n");
 
-    const FROM = env.FROM_ADDRESS; // Adresse auf einer Domain mit aktivem Email Routing (z. B. formular@recmo.de)
-    const TO = env.TO_ADDRESS; // in Email Routing verifizierte Zieladresse (z. B. Ismail.khudida@recmo.de)
-
-    const mail = createMimeMessage();
-    mail.setSender({ name: "Immobild.ai Formular", addr: FROM });
-    mail.setRecipient(TO);
-    mail.setSubject(subject);
-    mail.setHeader("Reply-To", `${name} <${email}>`);
-    mail.addMessage({ contentType: "text/plain", data: text });
-
+    let res;
     try {
-      await env.CONTACT_EMAIL.send(new EmailMessage(FROM, TO, mail.asRaw()));
+      res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: env.FROM_ADDRESS, // z. B. "Immobild.ai <anfrage@immobild.ai>" – Domain muss in Resend verifiziert sein
+          to: [env.TO_ADDRESS], // "ismail.khudida@recmo.de"
+          reply_to: `${name} <${email}>`,
+          subject,
+          text,
+        }),
+      });
     } catch (err) {
-      return json({ ok: false, error: "send_failed", detail: String((err && err.message) || err) }, 502, headers);
+      return json({ ok: false, error: "network", detail: String((err && err.message) || err) }, 502, headers);
+    }
+
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "");
+      return json({ ok: false, error: "send_failed", status: res.status, detail: detail.slice(0, 300) }, 502, headers);
     }
 
     return json({ ok: true }, 200, headers);

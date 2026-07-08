@@ -1,31 +1,36 @@
-# Immobild.ai – Kontakt-Worker
+# Immobild.ai – Kontakt-Worker (Resend)
 
-Nimmt das Kontaktformular von immobild.ai entgegen und schickt die Anfrage
-per **Cloudflare Email Routing** direkt an `Ismail.khudida@recmo.de`.
-Kostenlos, kein Drittanbieter, kein Paid-Plan – die immobild.ai-Weiterleitung
-bei Namecheap bleibt komplett unangetastet.
+Nimmt das Kontaktformular von immobild.ai entgegen und verschickt die Anfrage
+über **Resend** an `ismail.khudida@recmo.de`. Der Worker läuft in deinem
+Cloudflare-Account (du hast dort schon Worker), Resend übernimmt den Mailversand.
+Die immobild.ai-Weiterleitung bei Namecheap bleibt komplett unangetastet.
 
-## Einmalige Voraussetzungen (in Cloudflare)
+## Voraussetzungen (in Resend, einmalig)
 
-1. **Email Routing aktiv** auf einer deiner Domains in diesem Cloudflare-Account
-   (naheliegend `recmo.de`, wo du schon Worker betreibst):
-   Dashboard → Domain wählen → **Email** → **Email Routing** aktivieren.
-2. **Zieladresse verifizieren**: unter Email Routing → *Destination addresses*
-   `Ismail.khudida@recmo.de` hinzufügen und den Bestätigungslink klicken
-   (falls noch nicht verifiziert).
-3. In `wrangler.toml` prüfen:
-   - `FROM_ADDRESS` = eine Adresse auf der Email-Routing-Domain (z. B. `formular@recmo.de`).
-     Das Postfach muss **nicht** existieren, die Domain muss nur Email Routing haben.
-   - `destination_address` und `TO_ADDRESS` = die verifizierte Zieladresse.
+1. **Sende-Domain verifizieren**: In Resend → *Domains* → immobild.ai hinzufügen.
+   Resend zeigt dir 2–3 DNS-Einträge (DKIM + SPF/MX, alle auf einer `send.`-
+   Subdomain bzw. einem `resend._domainkey`-Eintrag). Diese bei Namecheap
+   hinzufügen. **Wichtig:** Das sind neue Einträge auf einer Subdomain – die
+   bestehende E-Mail-Weiterleitung (`@`-MX) wird dabei nicht angefasst.
+   *(Falls in deinem Resend-Account bereits eine andere Domain verifiziert ist,
+   kannst du auch die nehmen und in `wrangler.toml` `FROM_ADDRESS` entsprechend
+   ändern – dann entfällt Schritt 1.)*
+2. **API-Key erzeugen**: In Resend → *API Keys* → einen Key mit Sende-Recht
+   anlegen und kopieren (beginnt mit `re_`).
 
 ## Deployen
 
 ```bash
 cd worker
 npm install
-npx wrangler login        # nur beim ersten Mal
+npx wrangler login                       # nur beim ersten Mal
+npx wrangler secret put RESEND_API_KEY    # den re_... Key einfügen
 npx wrangler deploy
 ```
+
+Alternativ ganz ohne CLI: `src/index.js` in einen neuen Worker im Cloudflare-
+Dashboard kopieren, dort unter *Settings → Variables* `RESEND_API_KEY`
+(verschlüsselt) sowie `FROM_ADDRESS` und `TO_ADDRESS` setzen, deployen.
 
 Nach dem Deploy zeigt Wrangler die URL an, z. B.:
 
@@ -35,15 +40,15 @@ https://immobild-contact.<dein-subdomain>.workers.dev
 
 ## Website scharf schalten
 
-Diese URL in `../script.js` eintragen (ganz oben im Konfigurator-Block):
+Diese URL in `../script.js` eintragen (oben im Konfigurator-Block):
 
 ```js
 const CONTACT_ENDPOINT = "https://immobild-contact.<dein-subdomain>.workers.dev";
 ```
 
-Danach committen/pushen. Solange dort noch `REPLACE-ME` steht, zeigt das
-Formular einen Hinweis mit der E-Mail-Adresse statt zu senden – es geht also
-nichts kaputt, bevor der Worker live ist.
+Danach committen/pushen. Solange dort `REPLACE-ME` steht, zeigt das Formular
+einen Hinweis mit der E-Mail-Adresse statt zu senden – es geht also nichts
+kaputt, bevor der Worker live ist.
 
 ## Test
 
@@ -55,9 +60,11 @@ curl -X POST https://immobild-contact.<subdomain>.workers.dev \
 # erwartet: {"ok":true}
 ```
 
-Kommt keine Mail an, in Cloudflare unter **Workers → immobild-contact → Logs**
-(`npx wrangler tail`) nachsehen – meist ist die Zieladresse noch nicht als
-Destination verifiziert.
+Fehlermeldungen im Body helfen bei der Diagnose:
+- `{"error":"config"}` → `RESEND_API_KEY` fehlt als Secret.
+- `{"error":"send_failed","status":403,...}` → Absender-Domain in `FROM_ADDRESS`
+  ist in Resend nicht verifiziert.
+- Live-Logs: `npx wrangler tail`.
 
 ## Sicherheit
 
@@ -65,4 +72,4 @@ Destination verifiziert.
 - **Honeypot**: verstecktes Feld `company`; ausgefüllt = Bot → wird still verworfen.
 - **Validierung**: Name + gültige E-Mail Pflicht; Zeilenumbrüche werden entfernt
   (keine Header-Injection); Feldlänge begrenzt.
-- Der Worker speichert nichts – er stellt nur die E-Mail zu.
+- Der API-Key liegt als verschlüsseltes Secret im Worker, nie im Code/Repo.
