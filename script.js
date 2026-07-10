@@ -174,3 +174,37 @@ if (quoteForm) {
   });
 }
 updateQuote();
+
+/* ---------- Cookie-Consent (Google Analytics) ---------- */
+(function cookieConsent() {
+  const KEY = "cookieConsent";
+  let stored = null;
+  try { stored = localStorage.getItem(KEY); } catch (_) {}
+
+  if (stored === "granted" && typeof gtag === "function") {
+    gtag("consent", "update", { analytics_storage: "granted" });
+  }
+  if (stored) return;
+
+  const banner = document.createElement("div");
+  banner.className = "cookie-banner";
+  banner.setAttribute("role", "dialog");
+  banner.setAttribute("aria-label", "Cookie-Einstellungen");
+  banner.innerHTML =
+    '<p>Diese Website nutzt Google Analytics zur anonymisierten Reichweitenmessung. Cookies dafür werden erst nach Ihrer Zustimmung gesetzt. <a href="datenschutz.html">Mehr erfahren</a></p>' +
+    '<div class="cookie-banner-actions">' +
+    '<button type="button" class="button ghost" data-consent="denied">Ablehnen</button>' +
+    '<button type="button" class="button primary" data-consent="granted">Akzeptieren</button>' +
+    "</div>";
+  document.body.appendChild(banner);
+
+  banner.addEventListener("click", (e) => {
+    const choice = e.target.dataset.consent;
+    if (!choice) return;
+    try { localStorage.setItem(KEY, choice); } catch (_) {}
+    if (choice === "granted" && typeof gtag === "function") {
+      gtag("consent", "update", { analytics_storage: "granted" });
+    }
+    banner.remove();
+  });
+})();
