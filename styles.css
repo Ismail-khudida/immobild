@@ -245,6 +245,12 @@ strong { font-weight: 700; }
 .pano360.is-panning .pano360-hint { opacity: 0; }
 @media (max-width: 680px) { .pano360 { aspect-ratio: 4 / 3; } }
 
+/* Browserfenster-Rahmen um den echten Pano-Viewer (kein Fake-Screenshot, keine fremden Marken) */
+.pano360-device { border-radius: 20px; background: var(--ink); box-shadow: var(--shadow-lg); overflow: hidden; }
+.pano360-device-bar { display: flex; align-items: center; gap: 7px; padding: 15px 18px; }
+.pano360-device-bar span { width: 9px; height: 9px; border-radius: 999px; background: rgba(255,255,255,0.18); }
+.pano360-device .pano360 { border-radius: 0; box-shadow: none; border: none; border-top: 1px solid rgba(255,255,255,0.08); }
+
 /* ---------- Pakete ---------- */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .price-card { position: relative; padding: 36px 30px; border-radius: var(--radius-lg); transition: transform 240ms var(--ease-out), box-shadow 240ms ease; }
