@@ -251,6 +251,19 @@ strong { font-weight: 700; }
 .pano360-device-bar span { width: 9px; height: 9px; border-radius: 999px; background: rgba(255,255,255,0.18); }
 .pano360-device .pano360 { border-radius: 0; box-shadow: none; border: none; border-top: 1px solid rgba(255,255,255,0.08); }
 
+/* Verbundene Räume: zeigt, dass ein echter Rundgang mehrere Räume umfasst, nicht nur den einen Demo-Raum oben */
+.pano360-note { margin: 18px 0 0; font-size: 13.5px; color: var(--muted); text-align: center; }
+.pano360-rooms { position: relative; list-style: none; margin: 22px 0 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 28px; }
+.pano360-rooms::before { content: ""; position: absolute; top: 36px; left: 10%; right: 10%; height: 1px; background: var(--hairline); z-index: 0; }
+.pano360-rooms li { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 1; }
+.pano360-rooms img { width: 72px; height: 72px; border-radius: 999px; object-fit: cover; border: 3px solid var(--bg); box-shadow: var(--shadow); display: block; }
+.pano360-rooms span { font-size: 12.5px; font-weight: 600; color: var(--muted); }
+@media (max-width: 680px) {
+  .pano360-rooms::before { display: none; }
+  .pano360-rooms { gap: 16px 20px; }
+  .pano360-rooms img { width: 56px; height: 56px; border-width: 2px; }
+}
+
 /* ---------- Pakete ---------- */
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .price-card { position: relative; padding: 36px 30px; border-radius: var(--radius-lg); transition: transform 240ms var(--ease-out), box-shadow 240ms ease; }
