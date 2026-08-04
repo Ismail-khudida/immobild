@@ -103,8 +103,7 @@ function updateQuote() {
 }
 [packageSelect, objectType, sizeSelect, leerCheck].forEach((el) => el && el.addEventListener("change", updateQuote));
 
-// Nach dem Worker-Deploy hier die URL eintragen, z. B. "https://immobild-contact.<subdomain>.workers.dev"
-const CONTACT_ENDPOINT = "https://immobild-contact.REPLACE-ME.workers.dev";
+const CONTACT_ENDPOINT = "https://immobild-contact.ismailkhudida.workers.dev";
 
 function fieldVal(id) { const el = document.getElementById(id); return el ? el.value.trim() : ""; }
 
