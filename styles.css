@@ -416,3 +416,14 @@ body.reveal-ready .section.is-visible { opacity: 1; transform: translateY(0); }
   .button { width: 100%; }
   .stage-modes { flex-wrap: wrap; }
 }
+
+/* Brücke von den Medien-Paketen zu den Systemen für Maklerbüros (makler-system.html) */
+.bridge { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(28px, 4vw, 56px); align-items: center; padding: clamp(32px, 4vw, 48px); background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+.bridge > div > * { min-width: 0; }
+.bridge h2 { margin-bottom: 14px; font-size: clamp(26px, 3.2vw, 38px); }
+.bridge p { max-width: 52ch; margin: 0 0 24px; color: var(--muted); }
+.bridge-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.bridge-list li { display: flex; flex-direction: column; gap: 3px; padding: 16px 20px; background: #f7f8fb; border: 1px solid var(--hairline); border-radius: var(--radius); }
+.bridge-list b { font-size: 15.5px; font-weight: 700; }
+.bridge-list span { font-size: 14px; color: var(--muted); line-height: 1.5; }
+@media (max-width: 900px) { .bridge { grid-template-columns: 1fr; } }

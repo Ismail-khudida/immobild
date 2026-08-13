@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google tag (gtag.js) – Consent Mode: Analyse-Cookies erst nach Einwilligung, siehe cookie-consent.js -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { analytics_storage: 'denied' });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G34GDTRKY"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-8G34GDTRKY');
+    </script>
+    <title>Mehr als Bilder – das System für Maklerbüros | Immobild.ai</title>
+    <meta name="description" content="Für Maklerbüros in Ostwestfalen: Portalanfragen automatisch beantworten und qualifizieren, Eigentümer über die eigene Website gewinnen, Objekte als eigene Seite zeigen. Ein Makler pro Stadt.">
+    <meta name="author" content="Immobild.ai · Ismail Khudida">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f7f8fb">
+
+    <link rel="canonical" href="https://immobild.ai/makler-system.html">
+    <meta property="og:site_name" content="Immobild.ai">
+    <meta property="og:title" content="Mehr als Bilder – das System für Maklerbüros">
+    <meta property="og:description" content="Gute Bilder bringen Anfragen. Wir bauen, was danach kommt: Anfrage-Automatik, Eigentümer-Gewinnung und Objektseiten. Ein Makler pro Stadt.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://immobild.ai/makler-system.html">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:image" content="https://immobild.ai/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mehr als Bilder – das System für Maklerbüros">
+    <meta name="twitter:description" content="Anfrage-Automatik, Eigentümer-Gewinnung und Objektseiten für Maklerbüros in Ostwestfalen.">
+    <meta name="twitter:image" content="https://immobild.ai/assets/og-image.jpg">
+
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <link rel="preload" as="font" href="assets/fonts/PlusJakartaSans.woff2" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+
+    <!-- Seiteneigene Komponenten: bewusst hier statt in styles.css, damit die bestehenden Seiten unberührt bleiben -->
+    <style>
+      /* Globale h1-Regel trennt Wörter automatisch – hier unerwünscht ("brin-gen") */
+      .hero-inner h1 { max-width: 17ch; -webkit-hyphens: none; hyphens: none; text-wrap: balance; }
+      .lead-xl { max-width: 60ch; font-size: clamp(17px, 2vw, 20px); color: var(--muted); }
+
+      /* Beweis-Karte im Hero: zeigt die Anfrage-Automatik, statt sie zu behaupten */
+      .proof { min-width: 0; margin: 0; padding: 14px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+      .proof-head { display: flex; align-items: center; gap: 9px; padding: 6px 10px 14px; font-size: 13px; font-weight: 700; }
+      .proof-head time { margin-left: auto; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+      .proof-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 4px rgba(255,94,58,0.16); }
+      .proof-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: none; }
+      .pi { display: flex; align-items: flex-start; gap: 12px; padding: 13px 14px; background: #f7f8fb; border: 1px solid var(--hairline); border-radius: var(--radius); }
+      .pi-tick { flex: 0 0 auto; width: 17px; height: 17px; margin-top: 2px; border: 2px solid rgba(20,23,28,0.18); border-radius: 999px; }
+      .pi.is-done .pi-tick { background: #16a06a; border-color: #16a06a; position: relative; }
+      .pi.is-done .pi-tick::after { content: ""; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+      .pi-body { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+      .pi-body b { font-size: 14.5px; font-weight: 700; }
+      .pi-body span { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+      .pi-st { flex: 0 0 auto; margin-left: auto; padding: 4px 10px; border-radius: 999px; background: rgba(20,23,28,0.06); color: var(--muted); font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+      .pi.is-done .pi-st { background: rgba(22,160,106,0.12); color: #0f7a51; }
+      .proof figcaption { padding: 14px 10px 6px; font-size: 13.5px; font-weight: 600; color: var(--muted); text-align: center; }
+      @media (max-width: 560px) {
+        .pi { flex-wrap: wrap; }
+        .pi-st { margin-left: 29px; }
+      }
+      .leaks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 8px; }
+      .leak { padding: 26px 24px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius); box-shadow: var(--shadow); }
+      .leak-n { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-bottom: 14px; border-radius: 999px; background: rgba(255,94,58,0.12); color: var(--accent); font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+      .leak h3 { margin-bottom: 6px; font-size: 17px; font-weight: 700; }
+      .leak p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.62; }
+      .leak b { color: var(--ink); }
+
+      .sysgrid { display: grid; gap: 16px; }
+      .sys { position: relative; overflow: hidden; padding: 30px 30px 26px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius-lg); box-shadow: var(--shadow); transition: transform 200ms var(--ease-out), box-shadow 200ms ease; }
+      .sys::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--accent); opacity: .5; transition: opacity 200ms ease; }
+      .sys:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+      .sys:hover::before { opacity: 1; }
+      .sys-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+      .sys-num { font-size: 12px; font-weight: 800; letter-spacing: .14em; color: var(--accent); font-variant-numeric: tabular-nums; }
+      .sys-head h3 { margin: 0; font-size: clamp(19px, 2.2vw, 24px); font-weight: 800; }
+      .sys > p { max-width: 66ch; margin: 0 0 16px; color: var(--muted); }
+      .sys-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+      .sys-tags li { padding: 6px 13px; background: #f4f5f8; border: 1px solid var(--hairline); border-radius: 999px; font-size: 13px; font-weight: 600; }
+      .sys-why { display: block; margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--hairline); font-size: 15px; font-weight: 700; }
+      .sys.is-money { border-color: rgba(255,94,58,0.34); }
+      .sys.is-money::before { opacity: 1; }
+      .sys-flag { position: absolute; top: 22px; right: 26px; padding: 5px 12px; border-radius: 999px; background: rgba(255,94,58,0.12); color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+
+      .money { padding: 40px clamp(24px, 4vw, 44px); background: var(--ink); color: #fff; border-radius: var(--radius-lg); }
+      .money h3 { color: #fff; max-width: 24ch; margin-bottom: 16px; font-size: clamp(21px, 3vw, 30px); font-weight: 800; }
+      .money p { max-width: 68ch; margin: 0 0 14px; color: rgba(255,255,255,0.66); }
+      .money strong { color: #fff; }
+      .money .fine { margin: 20px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 14px; color: rgba(255,255,255,0.45); }
+
+      .excl { display: flex; gap: 16px; align-items: flex-start; margin-top: 24px; padding: 24px 26px; background: rgba(255,94,58,0.06); border: 1px solid rgba(255,94,58,0.3); border-radius: var(--radius); }
+      .excl svg { flex: 0 0 auto; width: 24px; height: 24px; margin-top: 3px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .excl b { display: block; margin-bottom: 5px; font-size: 17px; }
+      .excl span { color: var(--muted); }
+
+      .steps { display: grid; gap: 14px; counter-reset: st; }
+      .step { display: flex; gap: 18px; align-items: flex-start; padding: 22px 24px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius); }
+      .step::before { counter-increment: st; content: counter(st, decimal-leading-zero); flex: 0 0 auto; padding-top: 2px; font-size: 12px; font-weight: 800; letter-spacing: .1em; color: var(--accent); }
+      .step b { display: block; margin-bottom: 4px; font-size: 16px; }
+      .step span { color: var(--muted); font-size: 15px; }
+
+      .closer { max-width: var(--maxw); margin: 0 auto 92px; padding: 0 clamp(20px, 6vw, 40px); }
+      .closer-inner { padding: 52px clamp(24px, 4vw, 48px); text-align: center; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+      .closer-inner h2 { margin: 0 auto 12px; max-width: 18ch; }
+      .closer-inner p { max-width: 52ch; margin: 0 auto 26px; color: var(--muted); }
+      .closer-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+      @media (max-width: 900px) { .leaks { grid-template-columns: 1fr; } }
+      @media (max-width: 640px) {
+        .sys { padding: 26px 22px 22px; }
+        .sys-flag { position: static; display: inline-block; margin-bottom: 12px; }
+        .step { flex-direction: column; gap: 8px; }
+        .closer-actions .button { width: 100%; }
+      }
+      @media (prefers-reduced-motion: reduce) { .sys:hover { transform: none; } }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://immobild.ai/makler-system.html#service",
+          "name": "Anfrage-Automatik, Eigentümer-Gewinnung und Objektseiten für Maklerbüros",
+          "serviceType": "Digitalisierung und Automatisierung für Immobilienmakler",
+          "provider": { "@type": "Organization", "name": "Immobild.ai", "url": "https://immobild.ai/" },
+          "areaServed": { "@type": "AdministrativeArea", "name": "Ostwestfalen-Lippe" },
+          "audience": { "@type": "BusinessAudience", "audienceType": "Immobilienmakler" },
+          "description": "Portalanfragen werden automatisch beantwortet und vor der Terminvergabe qualifiziert. Eigentümer kommen über einen Bewertungsrechner auf der eigenen Website. Jedes Objekt bekommt eine eigene Seite mit Fotos, Drohnenaufnahmen und 360-Grad-Rundgang."
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://immobild.ai/" },
+            { "@type": "ListItem", "position": 2, "name": "Mehr als Bilder", "item": "https://immobild.ai/makler-system.html" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Muss meine Website dafür neu gebaut werden?", "acceptedAnswer": { "@type": "Answer", "text": "In den meisten Fällen nicht. Die bestehende Website bleibt und bekommt die Bausteine eingesetzt: Bewertungsrechner, Anfrage-Automatik und Terminbuchung. Ein Neubau ist nur dann sinnvoll, wenn die Seite technisch am Ende ist oder auf dem Handy nicht funktioniert. Das sagen wir vorher, nicht hinterher." } },
+            { "@type": "Question", "name": "Woher kommen die Eigentümer-Anfragen?", "acceptedAnswer": { "@type": "Answer", "text": "Aus Ihrer eigenen Website, nicht aus gekauften Adresslisten. Der Bewertungsrechner ist der Anlass: Eigentümer, die über einen Verkauf nachdenken, wollen zuerst wissen, was ihre Immobilie wert ist. Sie geben Adresse und Eckdaten ein, bekommen eine erste Einschätzung und hinterlassen dafür ihre Kontaktdaten. Wer noch nicht verkaufen will, bleibt in einer automatischen Nachfass-Strecke." } },
+            { "@type": "Question", "name": "Was passiert mit unqualifizierten Interessenten?", "acceptedAnswer": { "@type": "Answer", "text": "Sie bekommen eine freundliche Antwort, aber keinen Besichtigungstermin. Vor der Terminvergabe stellt das System die Fragen, die Sie sonst am Telefon stellen: Finanzierung geklärt, Eigenkapital, Zeitrahmen, Eigennutzung oder Kapitalanlage. In den Kalender kommt nur, wer geantwortet hat." } },
+            { "@type": "Question", "name": "Arbeiten Sie auch mit meinem Wettbewerber im selben Ort?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Pro Stadt beziehungsweise Landkreis arbeiten wir mit einem Maklerbüro. Ein System, das Eigentümer-Anfragen erzeugt, verliert seinen Sinn, wenn zwei Wettbewerber am selben Ort damit arbeiten. Wer zuerst da ist, hat den Platz." } },
+            { "@type": "Question", "name": "Muss ich alle drei Bausteine nehmen?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Wir starten mit einem, meist der Anfrage-Automatik, weil sie ab der ersten Woche Besichtigungen rettet. Die anderen kommen dazu, wenn der erste Teil läuft und Sie sehen, dass es funktioniert." } },
+            { "@type": "Question", "name": "Was kostet das System?", "acceptedAnswer": { "@type": "Answer", "text": "Anders als bei den Foto-Paketen gibt es hier keinen Listenpreis, weil der Aufwand von Ihren Abläufen abhängt: vorhandene Website, Portale, CRM und Kalender. Im kostenlosen Erstgespräch von 30 Minuten sehen wir uns das an und Sie bekommen einen verbindlichen Festpreis." } }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Zum Inhalt springen</a>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Immobild.ai Startseite">
+        <img class="brand-mark" src="favicon.svg" alt="" width="34" height="34">
+        <span>Immobild.ai</span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <nav id="primary-nav" class="nav" aria-label="Hauptnavigation">
+        <a href="index.html#vorher-nachher">Vorher / Nachher</a>
+        <a href="index.html#leistungen">Leistungen</a>
+        <a href="index.html#pakete">Pakete</a>
+        <a href="makler-system.html" aria-current="page">Für Maklerbüros</a>
+        <a href="index.html#kontakt">Kontakt</a>
+      </nav>
+      <a class="nav-cta" href="https://calendar.app.google/85Hebvgn6tX9ZhNb6" target="_blank" rel="noopener">Termin besprechen</a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-inner">
+          <p class="eyebrow">Für Maklerbüros · Ostwestfalen</p>
+          <h1>Gute Bilder bringen Anfragen. Wir bauen, was danach kommt.</h1>
+          <p class="hero-copy">
+            Ein Objekt geht online, und innerhalb von zwei Tagen liegen dutzende Anfragen im Postfach – während Sie auf Besichtigung, beim Notar oder im Auto sind. Genau dort verliert ein Maklerbüro Geld. Nicht an schlechten Bildern, sondern an dem, was nach den Bildern passiert.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://calendar.app.google/85Hebvgn6tX9ZhNb6" target="_blank" rel="noopener">30 Minuten sprechen</a>
+            <a class="button ghost" href="#bausteine">Die drei Bausteine</a>
+          </div>
+        </div>
+
+        <figure class="proof" aria-label="Beispiel einer automatisch bearbeiteten Anfrage">
+          <div class="proof-head"><span class="proof-dot" aria-hidden="true"></span>Objekt Musterstraße 12<time>Mittwoch, 21:47 Uhr</time></div>
+          <ol class="proof-list">
+            <li class="pi">
+              <span class="pi-tick" aria-hidden="true"></span>
+              <span class="pi-body"><b>Anfrage über ImmoScout24</b><span>„Ist die Wohnung noch verfügbar?"</span></span>
+              <span class="pi-st">eingegangen</span>
+            </li>
+            <li class="pi is-done">
+              <span class="pi-tick" aria-hidden="true"></span>
+              <span class="pi-body"><b>Persönliche Antwort verschickt</b><span>inklusive vier Rückfragen zur Finanzierung</span></span>
+              <span class="pi-st">nach 47 Sek.</span>
+            </li>
+            <li class="pi is-done">
+              <span class="pi-tick" aria-hidden="true"></span>
+              <span class="pi-body"><b>Selbstauskunft ausgefüllt</b><span>Finanzierung bestätigt, Eigenkapital hinterlegt</span></span>
+              <span class="pi-st">qualifiziert</span>
+            </li>
+            <li class="pi is-done">
+              <span class="pi-tick" aria-hidden="true"></span>
+              <span class="pi-body"><b>Besichtigung gebucht</b><span>Donnerstag, 14:00 Uhr – steht im Kalender</span></span>
+              <span class="pi-st">bestätigt</span>
+            </li>
+          </ol>
+          <figcaption>Ohne dass Sie das Handy in die Hand genommen haben.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Wo das Geld verloren geht</p>
+          <h2>Drei Lecks, die kein Foto der Welt schließt.</h2>
+        </div>
+        <div class="leaks">
+          <div class="leak">
+            <span class="leak-n">01</span>
+            <h3>Die zu späte Antwort</h3>
+            <p>Wie viele Anfragen kamen beim letzten gefragten Objekt in den ersten 48 Stunden – und wie viele davon hatten <b>innerhalb einer Stunde</b> eine Antwort? Wer zuerst antwortet, ist im Kopf des Interessenten der Makler, der sich kümmert.</p>
+          </div>
+          <div class="leak">
+            <span class="leak-n">02</span>
+            <h3>Die vergebliche Besichtigung</h3>
+            <p>Anfahrt, Termin, Nachbereitung – und die Finanzierung stand nie. Rechnen Sie die Stunden des letzten Monats zusammen. <b>Das ist kein Terminproblem, das ist ein Filterproblem.</b></p>
+          </div>
+          <div class="leak">
+            <span class="leak-n">03</span>
+            <h3>Der Eigentümer, der nie anrief</h3>
+            <p>Wie viele Häuser wurden im letzten Quartal in Ihrem Gebiet verkauft, <b>ohne dass Sie je mit den Eigentümern gesprochen haben</b>? Käufer gibt es genug. Objekte sind das Geschäft.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="bausteine" class="section dark-section">
+        <div class="section-heading">
+          <p class="eyebrow">Die Bausteine</p>
+          <h2>Drei Systeme. Einzeln einsetzbar, zusammen am stärksten.</h2>
+          <p>Aufgebaut auf dem, was Sie schon haben – Ihre Website, Ihre Portale, Ihr Kalender. Wir betreiben die Technik, Sie nutzen sie.</p>
+        </div>
+
+        <div class="sysgrid">
+          <article class="sys">
+            <div class="sys-head"><span class="sys-num">01</span><h3>Anfrage-Automatik</h3></div>
+            <p>Jede Anfrage aus ImmoScout24, Immowelt oder von Ihrer Website bekommt sofort eine persönliche Antwort – auch abends und am Wochenende. Vor der Terminvergabe stellt das System die Fragen, die Sie sonst am Telefon stellen: Finanzierung geklärt? Eigenkapital? Zeitrahmen? Eigennutzung oder Kapitalanlage?</p>
+            <ul class="sys-tags"><li>Antwort in unter 60 Sekunden</li><li>Automatische Qualifizierung</li><li>Selbstbuchung freier Termine</li><li>Freundliche Absagen</li></ul>
+            <span class="sys-why">In Ihren Kalender kommt nur noch, wer die Fragen beantwortet hat.</span>
+          </article>
+
+          <article class="sys is-money">
+            <span class="sys-flag">Bringt Objekte</span>
+            <div class="sys-head"><span class="sys-num">02</span><h3>Eigentümer-Radar</h3></div>
+            <p>Ein Bewertungsrechner auf Ihrer Website: Eigentümer geben Adresse und Eckdaten ein, bekommen eine erste Einschätzung – und hinterlassen dafür ihre Kontaktdaten. Wer noch nicht verkaufen will, landet in einer automatischen Nachfass-Strecke und hört über Monate regelmäßig von Ihnen, ohne dass Sie daran denken müssen.</p>
+            <ul class="sys-tags"><li>Bewertungsrechner auf Ihrer Seite</li><li>Eigentümer statt Käuferflut</li><li>Automatische Nachfass-Strecke</li><li>Übergabe in Ihr CRM</li></ul>
+            <span class="sys-why">Das ist der Baustein, der Alleinaufträge bringt – und damit das Geld.</span>
+          </article>
+
+          <article class="sys">
+            <div class="sys-head"><span class="sys-num">03</span><h3>Objekt-Seite statt PDF</h3></div>
+            <p>Jedes Objekt bekommt eine eigene Seite: Fotos, Drohnenaufnahmen, ein kurzer Objektfilm und ein begehbarer 360-Grad-Rundgang. Ein Link, den Sie in jede Nachricht setzen können – statt eines Exposé-PDFs, das niemand gern öffnet. Produziert wie gewohnt von uns, inklusive digitalem Aufräumen und virtueller Möblierung leerer Räume.</p>
+            <ul class="sys-tags"><li>Fotos, Drohne, Film, 360°</li><li>Ein teilbarer Link</li><li>Virtuelle Möblierung</li><li>Meist in einer Woche fertig</li></ul>
+            <span class="sys-why">Interessenten sehen das Objekt, bevor sie einen Termin anfragen – das spart Leerbesichtigungen.</span>
+          </article>
+        </div>
+
+        <div class="excl">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <div>
+            <b>Ein Maklerbüro pro Stadt</b>
+            <span>Ein System, das Eigentümer-Anfragen erzeugt, verliert seinen Sinn, wenn zwei Wettbewerber am selben Ort damit arbeiten. Deshalb vergeben wir pro Stadt beziehungsweise Landkreis genau einen Platz – und sagen Ihnen im Erstgespräch ehrlich, ob Ihrer noch frei ist.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Was es wert ist</p>
+          <h2>Nicht unsere Zahlen. Ihre.</h2>
+        </div>
+        <div class="money">
+          <h3>Ein zusätzlicher Alleinauftrag im Quartal trägt das ganze Jahr.</h3>
+          <p>Bei einem Einfamilienhaus für 350.000 € liegt die Verkäufer-Courtage in Nordrhein-Westfalen und Niedersachsen üblicherweise im <strong>fünfstelligen Bereich</strong>. Ein einziges zusätzliches Objekt pro Quartal steht damit gegen die Kosten eines kompletten Jahres – und alles darüber ist Gewinn.</p>
+          <p>Die zweite Hälfte der Rechnung sind die Stunden: jede Besichtigung ohne geklärte Finanzierung kostet Anfahrt, Termin und Nachbereitung. Zählen Sie die des letzten Monats zusammen und multiplizieren Sie sie mit dem, was eine Stunde Ihrer Zeit wert ist.</p>
+          <p class="fine">Für die Systeme gibt es keinen Listenpreis – anders als bei unseren Foto-Paketen. Der Aufwand hängt von Ihren Abläufen ab: vorhandene Website, Portale, CRM, Kalender. Den verbindlichen Festpreis bekommen Sie im Erstgespräch, vorher wäre jede Zahl geraten.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Warum wir</p>
+          <h2>Wir stehen selbst in den Objekten.</h2>
+          <p>Die meisten Anbieter kennen Immobilien aus dem Briefing. Wir fotografieren jede Woche Wohnungen, Häuser und Grundstücke in Ostwestfalen – wir wissen, wie ein Exposé entsteht, warum ein leerer Raum ohne virtuelle Möblierung niemanden abholt und was ein Makler an einem Samstag wirklich braucht.</p>
+          <p>Und die Software dahinter bauen wir nicht nur für Kunden: <a href="https://mietordner.de" target="_blank" rel="noopener">MietOrdner</a> ist unsere eigene Immobilienverwaltung für private Vermieter, mit KI-Belegerkennung, Nebenkostenabrechnung und Fristenüberwachung. Wer eine eigene Immobiliensoftware betreibt, kennt die Abläufe der Branche nicht nur aus Präsentationen.</p>
+          <p>Sie arbeiten dabei direkt mit Ismail Khudida. Ansprechpartner und Umsetzung sind dieselbe Person.</p>
+        </div>
+      </section>
+
+      <section class="section dark-section">
+        <div class="section-heading">
+          <p class="eyebrow">So fangen wir an</p>
+          <h2>Klein starten, nicht alles auf einmal.</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><div><b>Erstgespräch, 30 Minuten, kostenlos</b><span>Wir sehen uns Ihre Abläufe an: Woher kommen Anfragen, was passiert danach, wo geht Zeit verloren. Am Ende wissen Sie, welcher Baustein bei Ihnen am meisten bringt – auch wenn wir nicht zusammenarbeiten.</span></div></div>
+          <div class="step"><div><b>Ein Baustein zuerst</b><span>Meist die Anfrage-Automatik, weil sie ab der ersten Woche Besichtigungen rettet und sich sofort zeigt. Der Rest folgt, wenn der erste Teil läuft.</span></div></div>
+          <div class="step"><div><b>Wir betreiben es, Sie nutzen es</b><span>Technik, Updates, Änderungen und Betreuung liegen bei uns. Sie bekommen qualifizierte Termine und Eigentümer-Kontakte – und müssen dafür niemanden einstellen.</span></div></div>
+        </div>
+      </section>
+
+      <section class="section faq-section">
+        <div class="section-heading">
+          <p class="eyebrow">Fragen</p>
+          <h2>Kurz beantwortet.</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary>Muss meine Website dafür neu gebaut werden?</summary><p>In den meisten Fällen nicht. Die bestehende Website bleibt und bekommt die Bausteine eingesetzt: Bewertungsrechner, Anfrage-Automatik und Terminbuchung. Ein Neubau ist nur dann sinnvoll, wenn die Seite technisch am Ende ist oder auf dem Handy nicht funktioniert. Das sagen wir vorher, nicht hinterher.</p></details>
+          <details><summary>Woher kommen die Eigentümer-Anfragen?</summary><p>Aus Ihrer eigenen Website, nicht aus gekauften Adresslisten. Der Bewertungsrechner ist der Anlass: Eigentümer, die über einen Verkauf nachdenken, wollen zuerst wissen, was ihre Immobilie wert ist. Sie geben Adresse und Eckdaten ein, bekommen eine erste Einschätzung und hinterlassen dafür ihre Kontaktdaten. Wer noch nicht verkaufen will, bleibt in einer automatischen Nachfass-Strecke.</p></details>
+          <details><summary>Was passiert mit unqualifizierten Interessenten?</summary><p>Sie bekommen eine freundliche Antwort, aber keinen Besichtigungstermin. Vor der Terminvergabe stellt das System die Fragen, die Sie sonst am Telefon stellen: Finanzierung geklärt, Eigenkapital, Zeitrahmen, Eigennutzung oder Kapitalanlage. In den Kalender kommt nur, wer geantwortet hat.</p></details>
+          <details><summary>Arbeiten Sie auch mit meinem Wettbewerber im selben Ort?</summary><p>Nein. Pro Stadt beziehungsweise Landkreis arbeiten wir mit einem Maklerbüro. Ein System, das Eigentümer-Anfragen erzeugt, verliert seinen Sinn, wenn zwei Wettbewerber am selben Ort damit arbeiten. Wer zuerst da ist, hat den Platz.</p></details>
+          <details><summary>Muss ich alle drei Bausteine nehmen?</summary><p>Nein. Wir starten mit einem, meist der Anfrage-Automatik, weil sie ab der ersten Woche Besichtigungen rettet. Die anderen kommen dazu, wenn der erste Teil läuft und Sie sehen, dass es funktioniert.</p></details>
+          <details><summary>Was kostet das System?</summary><p>Anders als bei den Foto-Paketen gibt es hier keinen Listenpreis, weil der Aufwand von Ihren Abläufen abhängt: vorhandene Website, Portale, CRM und Kalender. Im kostenlosen Erstgespräch von 30 Minuten sehen wir uns das an und Sie bekommen einen verbindlichen Festpreis.</p></details>
+        </div>
+      </section>
+
+      <section class="closer">
+        <div class="closer-inner">
+          <h2>Ist Ihre Stadt noch frei?</h2>
+          <p>30 Minuten, kostenlos, ohne Präsentation. Wir sehen uns Ihre Abläufe an, Sie erfahren, welcher Baustein bei Ihnen am schnellsten wirkt – und ob Ihr Gebiet noch offen ist.</p>
+          <div class="closer-actions">
+            <a class="button primary" href="https://calendar.app.google/85Hebvgn6tX9ZhNb6" target="_blank" rel="noopener">Termin besprechen</a>
+            <a class="button ghost" href="tel:+491783248904">0178 3248904</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Immobild.ai</strong>
+        <p>Foto, Drohne, Video und 360-Grad-Rundgang für Makler in Ostwestfalen – plus die Systeme dahinter.</p>
+        <p class="footer-contact"><a href="mailto:info@immobild.ai">info@immobild.ai</a> · <a href="tel:+491783248904">0178 3248904</a></p>
+      </div>
+      <nav aria-label="Standorte">
+        <a href="index.html">Startseite</a>
+        <a href="immobilienfotograf-minden.html">Minden</a>
+        <a href="immobilienfotograf-bielefeld.html">Bielefeld</a>
+        <a href="immobilienfotograf-bad-oeynhausen.html">Bad Oeynhausen</a>
+        <a href="immobilienfotograf-herford.html">Herford</a>
+        <a href="immobilienfotograf-luebbecke.html">Lübbecke</a>
+      </nav>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </footer>
+  </body>
+</html>
