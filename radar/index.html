@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Das Widget wird per iframe eingebettet – als eigenständige Seite soll es nicht in den Index. -->
+    <meta name="robots" content="noindex">
+    <title>Immobilienbewertung – kostenlose Ersteinschätzung</title>
+    <link rel="stylesheet" href="radar.css">
+  </head>
+  <body>
+    <div class="radar" id="app" hidden>
+      <header class="r-head">
+        <img id="tLogo" class="r-logo" alt="" width="36" height="36" hidden>
+        <div>
+          <p class="r-kicker" id="tKicker">Kostenlose Ersteinschätzung</p>
+          <h1 class="r-title" id="tTitle">Was ist Ihre Immobilie wert?</h1>
+        </div>
+      </header>
+
+      <ol class="r-steps" aria-label="Fortschritt">
+        <li class="is-active" data-step="1">Objekt</li>
+        <li data-step="2">Kontakt</li>
+        <li data-step="3">Ergebnis</li>
+      </ol>
+
+      <!-- Schritt 1: Objektdaten -->
+      <form id="stepObjekt" novalidate="false">
+        <fieldset class="r-seg" id="artWahl">
+          <legend class="r-label">Was möchten Sie einschätzen lassen?</legend>
+          <label><input type="radio" name="objektart" value="haus" checked><span>Haus</span></label>
+          <label><input type="radio" name="objektart" value="wohnung"><span>Wohnung</span></label>
+          <label><input type="radio" name="objektart" value="grundstueck"><span>Grundstück</span></label>
+        </fieldset>
+
+        <div class="r-grid">
+          <div class="r-field">
+            <label class="r-label" for="fStadt">Stadt</label>
+            <select id="fStadt" required></select>
+          </div>
+          <div class="r-field">
+            <label class="r-label" for="fLage">Lage</label>
+            <select id="fLage" required>
+              <option value="einfach">Einfache Lage</option>
+              <option value="mittel" selected>Mittlere Lage</option>
+              <option value="gut">Gute Lage</option>
+            </select>
+          </div>
+          <div class="r-field" data-nur="haus wohnung">
+            <label class="r-label" for="fWohnflaeche">Wohnfläche (m²)</label>
+            <input id="fWohnflaeche" type="number" inputmode="numeric" min="20" max="1000" required placeholder="z. B. 140">
+          </div>
+          <div class="r-field" data-nur="haus grundstueck">
+            <label class="r-label" for="fGrundstueck">Grundstück (m²)</label>
+            <input id="fGrundstueck" type="number" inputmode="numeric" min="50" max="20000" required placeholder="z. B. 450">
+          </div>
+          <div class="r-field" data-nur="haus wohnung">
+            <label class="r-label" for="fBaujahr">Baujahr</label>
+            <input id="fBaujahr" type="number" inputmode="numeric" min="1850" required placeholder="z. B. 1994">
+          </div>
+          <div class="r-field" data-nur="haus wohnung">
+            <label class="r-label" for="fZustand">Zustand</label>
+            <select id="fZustand" required>
+              <option value="renovierungsbeduerftig">Renovierungsbedürftig</option>
+              <option value="gepflegt" selected>Gepflegt</option>
+              <option value="neuwertig">Modernisiert / neuwertig</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="r-button" type="submit">Weiter zur Einschätzung</button>
+      </form>
+
+      <!-- Schritt 2: Kontakt vor Ergebnis -->
+      <form id="stepKontakt" hidden>
+        <p class="r-lead">Fast geschafft – wohin dürfen wir Ihre Ersteinschätzung senden?</p>
+        <div class="r-grid">
+          <div class="r-field r-span2">
+            <label class="r-label" for="fName">Vor- und Nachname</label>
+            <input id="fName" type="text" autocomplete="name" required placeholder="Max Mustermann">
+          </div>
+          <div class="r-field">
+            <label class="r-label" for="fEmail">E-Mail</label>
+            <input id="fEmail" type="email" autocomplete="email" required placeholder="max@beispiel.de">
+          </div>
+          <div class="r-field">
+            <label class="r-label" for="fTelefon">Telefon</label>
+            <input id="fTelefon" type="tel" autocomplete="tel" required placeholder="0170 1234567">
+          </div>
+        </div>
+
+        <!-- Honeypot: bleibt bei Menschen leer, ist unsichtbar positioniert -->
+        <input class="r-hp" type="text" id="fFirma" name="firma" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <label class="r-consent">
+          <input type="checkbox" id="fConsent" required>
+          <span>Ich bin einverstanden, dass meine Angaben zur Erstellung der Einschätzung verarbeitet werden und
+          <b class="t-name">der Anbieter</b> mich dazu kontaktieren darf.
+          (<a id="tDatenschutz" href="#" target="_blank" rel="noopener">Datenschutz</a>)</span>
+        </label>
+
+        <p class="r-error" id="sendFehler" hidden>Senden hat gerade nicht geklappt. Bitte versuchen Sie es noch einmal.</p>
+
+        <div class="r-actions">
+          <button class="r-button r-ghost" type="button" id="zurueck">Zurück</button>
+          <button class="r-button" type="submit" id="senden">Einschätzung anzeigen</button>
+        </div>
+      </form>
+
+      <!-- Schritt 3: Ergebnis -->
+      <section id="stepErgebnis" hidden aria-live="polite">
+        <p class="r-lead">Ihre unverbindliche Ersteinschätzung:</p>
+        <p class="r-result" id="ergSpanne"></p>
+        <p class="r-resultsub" id="ergObjekt"></p>
+        <div class="r-next">
+          <b>Wie geht es weiter?</b>
+          <p><span class="t-name">Der Anbieter</span> prüft Ihre Angaben und meldet sich zeitnah bei Ihnen –
+          für eine genauere Einschätzung direkt am Objekt. Eine Bestätigung ist unterwegs an Ihre E-Mail-Adresse.</p>
+        </div>
+      </section>
+
+      <footer class="r-foot">
+        <p class="r-disclaimer">Automatische Ersteinschätzung auf Basis regionaler Richtwerte (Spanne) –
+        keine Wertermittlung nach ImmoWertV. Der tatsächliche Wert hängt von Lage, Zustand und Ausstattung im Detail ab.</p>
+        <p class="r-provider">Bereitgestellt von <span class="t-name">…</span>
+          · <a id="tImpressum" href="#" target="_blank" rel="noopener">Impressum</a>
+          · <a id="tDatenschutz2" href="#" target="_blank" rel="noopener">Datenschutz</a></p>
+      </footer>
+    </div>
+
+    <p class="r-loaderror" id="ladeFehler" hidden>Der Bewertungsrechner konnte nicht geladen werden. Bitte laden Sie die Seite neu.</p>
+
+    <script type="module" src="radar.js"></script>
+  </body>
+</html>

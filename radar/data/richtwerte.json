@@ -1,0 +1,35 @@
+{
+  "_hinweis": "Startwerte in BORIS-NRW-Größenordnung (Stand 08/2026). Vor dem ersten zahlenden Makler je Stadt gegen BORIS NRW (https://www.boris.nrw.de) prüfen und nachschärfen. bodenrichtwert in €/m² Grundstück, wohnung_qm in €/m² Wohnfläche, jeweils nach Lagestufe.",
+  "staedte": {
+    "porta-westfalica": {
+      "name": "Porta Westfalica",
+      "bodenrichtwert": { "einfach": 85, "mittel": 130, "gut": 190 },
+      "wohnung_qm": { "einfach": 1400, "mittel": 1800, "gut": 2300 }
+    },
+    "minden": {
+      "name": "Minden",
+      "bodenrichtwert": { "einfach": 100, "mittel": 160, "gut": 240 },
+      "wohnung_qm": { "einfach": 1500, "mittel": 2000, "gut": 2600 }
+    },
+    "bad-oeynhausen": {
+      "name": "Bad Oeynhausen",
+      "bodenrichtwert": { "einfach": 100, "mittel": 155, "gut": 230 },
+      "wohnung_qm": { "einfach": 1500, "mittel": 2000, "gut": 2600 }
+    },
+    "herford": {
+      "name": "Herford",
+      "bodenrichtwert": { "einfach": 110, "mittel": 170, "gut": 260 },
+      "wohnung_qm": { "einfach": 1600, "mittel": 2100, "gut": 2700 }
+    },
+    "bielefeld": {
+      "name": "Bielefeld",
+      "bodenrichtwert": { "einfach": 200, "mittel": 330, "gut": 520 },
+      "wohnung_qm": { "einfach": 2100, "mittel": 2800, "gut": 3600 }
+    },
+    "luebbecke": {
+      "name": "Lübbecke",
+      "bodenrichtwert": { "einfach": 80, "mittel": 120, "gut": 180 },
+      "wohnung_qm": { "einfach": 1350, "mittel": 1750, "gut": 2200 }
+    }
+  }
+}

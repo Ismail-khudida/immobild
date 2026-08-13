@@ -21,6 +21,8 @@ Statisches HTML, kein Build-Schritt. Gemeinsames `styles.css`, gemeinsames `scri
 - `index.html` — Startseite mit Vorher/Nachher-Reglern, 360°-Demo, Paketen (399/799/1.299 €) und Kontaktformular
 - `makler-system.html` — die Systeme für Maklerbüros (Anfrage-Automatik, Eigentümer-Radar, Objekt-Seiten)
 - `immobilienfotograf-*.html` — 5 Städteseiten (Minden, Bielefeld, Bad Oeynhausen, Herford, Lübbecke)
+- `bewertung.html` — öffentliche Demo des Bewertungsrechners (bettet das Widget wie ein Makler-Kunde ein)
+- `radar/` — der Eigentümer-Radar als vermietbares Produkt: iframe-Widget (`index.html` + `radar.js` + `radar.css`), Rechenlogik (`calc.js`, Tests: `node radar/calc.test.mjs`), Einbett-Loader (`embed.js`), Mandanten (`tenants/<id>.json`), Richtwerte (`data/richtwerte.json`). **Anleitung für neue Makler-Kunden: [EINBETTUNG.md](EINBETTUNG.md).** Lead-Routing (Tenant → Postfach) liegt bewusst im Worker (`RADAR_TENANTS`), nicht in der öffentlichen JSON.
 
 **Designtokens** in `styles.css`: `--accent: #ff5e3a` (Orange), `--ink: #14171c`, `--bg: #f7f8fb`, `--muted: #555a63`.
 **Bausteine zum Wiederverwenden:** `.section`, `.section-heading`, `.eyebrow`, `.button primary|ghost`, `.dark-section`, `.faq-list`, `.site-footer`.

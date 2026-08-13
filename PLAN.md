@@ -33,9 +33,11 @@ Auf recmo.de existiert `/immobilienmakler` als Auffangseite für Makler, die zue
 - **Nav-Eintrag „Für Maklerbüros"** auf allen 6 Seiten, Sitemap ergänzt.
 - Commit `233900d`.
 
-## 4) Nächster Bau: der Bewertungsrechner („Eigentümer-Radar")
+## 4) Der Bewertungsrechner („Eigentümer-Radar") — GEBAUT (13.08.2026)
 
-Das ist das Produkt, das Geld bringt. Die Seite verspricht ihn bereits — solange er nicht existiert, ist es eine Behauptung.
+**Status: live.** Mandantenfähiges iframe-Widget in `radar/`, Demo auf [bewertung.html](https://immobild.ai/bewertung.html), Lead-Endpunkt `POST /radar-lead` im Worker (Lead-Mail an Makler + Bestätigung an Eigentümer). Neuer Kunde = Tenant-JSON + Worker-Eintrag, Anleitung in [EINBETTUNG.md](EINBETTUNG.md). Offen: Richtwerte vor dem ersten zahlenden Makler gegen BORIS NRW prüfen; mehrstufige Nachfass-Strecke (v2).
+
+Ursprüngliche Anforderungen (erfüllt):
 
 **Was er tut:** Eigentümer gibt Adresse, Wohnfläche, Grundstück, Baujahr, Objektart und Zustand ein → bekommt eine Spanne als erste Einschätzung → hinterlässt dafür Name, E-Mail, Telefon → Makler bekommt den Lead, Eigentümer eine automatische Nachfass-Strecke.
 

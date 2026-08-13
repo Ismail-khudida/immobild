@@ -1,0 +1,10 @@
+{
+  "name": "Immobild.ai",
+  "logo": "https://immobild.ai/assets/favicon-32.png",
+  "accent": "#ff5e3a",
+  "kicker": "Kostenlose Ersteinschätzung",
+  "titel": "Was ist Ihre Immobilie wert?",
+  "staedte": ["porta-westfalica", "minden", "bad-oeynhausen", "herford", "bielefeld", "luebbecke"],
+  "impressum": "https://immobild.ai/impressum.html",
+  "datenschutz": "https://immobild.ai/datenschutz.html"
+}
