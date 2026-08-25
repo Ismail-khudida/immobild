@@ -39,3 +39,10 @@ Statisches HTML, kein Build-Schritt. Gemeinsames `styles.css`, gemeinsames `scri
 
 Alle CTAs zeigen auf `https://calendar.app.google/85Hebvgn6tX9ZhNb6`.
 Kontakt: info@immobild.ai · 0178 3248904
+
+## Sicherung (GitHub) — Wochenregel
+
+Dieses Repo ist **öffentlich** und liefert die Live-Website aus (Deploy = git push!).
+Regel (27.08.2026): Wöchentlich prüfen, ob ungesicherte Änderungen vorliegen — aber
+**pushen heißt hier veröffentlichen**. Nur pushen, wenn die Änderungen live gehen
+sollen; sonst Ismail fragen. Nichts committen, was nicht öffentlich sein darf.
