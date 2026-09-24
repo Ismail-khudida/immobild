@@ -395,6 +395,27 @@ body.reveal-ready .section.is-visible { opacity: 1; transform: translateY(0); }
   .cookie-banner-actions { justify-content: flex-end; }
 }
 
+/* ---------- Mobile Kontaktleiste (von script.js eingefügt, nur wo es #kontakt gibt) ----------
+   Ab 1020 px abwärts ist der Header-Button ausgeblendet – die Leiste ersetzt ihn. Sie erscheint
+   erst nach dem Hero, verschwindet im Kontaktbereich und solange der Cookie-Banner offen ist.
+   visibility statt nur transform, damit die versteckten Links nicht per Tab erreichbar sind. */
+.cta-bar { display: none; }
+@media (max-width: 1020px) {
+  body.has-cta-bar { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+  .cta-bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 65;
+    display: grid; grid-template-columns: 1fr 1.5fr; gap: 10px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: rgba(255,255,255,0.97); border-top: 1px solid var(--hairline);
+    box-shadow: 0 -10px 28px rgba(20,23,28,0.08);
+    transform: translateY(110%); visibility: hidden;
+    transition: transform 240ms var(--ease-out), visibility 0s linear 240ms;
+  }
+  .cta-bar.is-visible { transform: none; visibility: visible; transition: transform 240ms var(--ease-out), visibility 0s; }
+  .cta-bar .button { width: 100%; min-height: 48px; padding: 12px 14px; font-size: 15px; white-space: nowrap; }
+}
+@media print { .cta-bar { display: none !important; } body.has-cta-bar { padding-bottom: 0; } }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1020px) {
   .site-header { grid-template-columns: 1fr auto; }

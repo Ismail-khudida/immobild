@@ -254,6 +254,52 @@ updateQuote();
       }
     }
     banner.remove();
+    document.dispatchEvent(new CustomEvent("cookiebanner:closed"));
   });
 })();
 
+/* ---------- Mobile Kontaktleiste: Anrufen + Anfragen, sobald der Hero verlassen ist ---------- */
+(function ctaBar() {
+  const target = document.getElementById("kontakt");
+  if (!target || !document.querySelector(".site-header")) return;
+
+  const bar = document.createElement("div");
+  bar.className = "cta-bar";
+  bar.setAttribute("role", "region");
+  bar.setAttribute("aria-label", "Schnellkontakt");
+  const label = target.dataset.ctaLabel || "Objekt anfragen";
+  bar.innerHTML =
+    '<a class="button ghost" href="tel:+491783248904">Anrufen</a>' +
+    '<a class="button primary" href="#kontakt"></a>';
+  bar.lastChild.textContent = label;
+  document.body.appendChild(bar);
+  document.body.classList.add("has-cta-bar");
+
+  let pastHero = false;
+  let atContact = false;
+  const update = () => {
+    // Nicht über dem Cookie-Banner stapeln und nicht im Kontaktbereich doppeln.
+    const show = pastHero && !atContact && !document.querySelector(".cookie-banner");
+    bar.classList.toggle("is-visible", show);
+  };
+
+  // Scroll-Events kommen ohnehin höchstens einmal pro Frame; die Arbeit hier ist trivial.
+  const onScroll = () => {
+    pastHero = window.scrollY > window.innerHeight * 0.6;
+    update();
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  document.addEventListener("cookiebanner:closed", update);
+  onScroll();
+
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      atContact = entries[0].isIntersecting;
+      update();
+    }).observe(target);
+  }
+
+  bar.querySelector('a[href="#kontakt"]').addEventListener("click", () => {
+    track("cta_click", { cta_location: "mobile_leiste", cta_target: "kontakt" });
+  });
+})();
