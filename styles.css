@@ -314,6 +314,9 @@ strong { font-weight: 700; }
 .consent { font-size: 12px !important; align-items: flex-start; line-height: 1.45; }
 .consent input { margin-top: 2px; }
 .consent a { color: var(--accent-text); font-weight: 700; }
+/* Textlinks im Fließtext (Abschnittsköpfe, FAQ-Antworten) erkennbar machen – das globale a erbt sonst Farbe ohne Unterstreichung */
+.section-heading p a:not(.button), .faq-list p a { color: var(--accent-text); font-weight: 700; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.section-heading p a:not(.button):hover, .faq-list p a:hover { text-decoration-thickness: 2px; }
 .hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .quote-hint.is-error { color: var(--accent-text); font-weight: 600; }
 .quote-hint.is-error a { color: var(--accent-text); text-decoration: underline; }

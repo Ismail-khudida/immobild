@@ -54,6 +54,20 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 
+    <!-- Seiteneigene Stile: bewusst hier statt in styles.css -->
+    <style>
+      .area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .area-group { padding: 22px 26px 10px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius); box-shadow: var(--shadow); }
+      .area-group h3 { margin: 0 0 6px; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+      .area-list { margin: 0; padding: 0; list-style: none; }
+      .area-list li + li { border-top: 1px solid var(--hairline); }
+      .area-list a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 13px 0; font-weight: 700; }
+      .area-list a span { font-size: 14px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .area-list a:hover { color: var(--accent-text); }
+      .area-note { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+      @media (max-width: 760px) { .area-grid { grid-template-columns: 1fr; } }
+    </style>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -62,13 +76,13 @@
           "@type": ["LocalBusiness", "ProfessionalService", "PhotographyBusiness"],
           "@id": "https://immobild.ai/#business",
           "name": "Immobild.ai",
-          "description": "Immobilienaufnahmen für Makler in Ostwestfalen: Foto, Drohne, Video und 360-Grad-Rundgang, sauber produziert und online bereitgestellt.",
+          "description": "Immobilienaufnahmen für Makler in Ostwestfalen und im Landkreis Schaumburg: Foto, Drohne, Video und 360-Grad-Rundgang, sauber produziert und online bereitgestellt.",
           "url": "https://immobild.ai/",
           "image": "https://immobild.ai/assets/og-image.jpg",
           "email": "info@immobild.ai",
           "telephone": "+49-178-3248904",
           "priceRange": "€€",
-          "founder": { "@type": "Person", "name": "Ismail Khudida" },
+          "founder": { "@type": "Person", "name": "Ismail Khudida", "image": "https://immobild.ai/assets/ismail.webp" },
           "address": { "@type": "PostalAddress", "streetAddress": "Bückeburger Str. 14", "postalCode": "32457", "addressLocality": "Porta Westfalica", "addressRegion": "NRW", "addressCountry": "DE" },
           "areaServed": [
             { "@type": "AdministrativeArea", "name": "Ostwestfalen" },
@@ -77,8 +91,21 @@
             { "@type": "City", "name": "Bad Oeynhausen" },
             { "@type": "City", "name": "Herford" },
             { "@type": "City", "name": "Bielefeld" },
-            { "@type": "City", "name": "Lübbecke" }
+            { "@type": "City", "name": "Lübbecke" },
+            { "@type": "AdministrativeArea", "name": "Landkreis Schaumburg" },
+            { "@type": "City", "name": "Bückeburg" },
+            { "@type": "City", "name": "Rinteln" },
+            { "@type": "City", "name": "Stadthagen" }
           ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Foto-Pakete für Immobilien",
+            "itemListElement": [
+              { "@type": "Offer", "name": "Lite", "description": "15–25 portalfertige Objektfotos inkl. digitalem Aufräumen, Aufhellen und Bildoptimierung, Online-Übergabe", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 399, "priceCurrency": "EUR", "valueAddedTaxIncluded": false } },
+              { "@type": "Offer", "name": "Premium", "description": "Alles aus Lite, Drohnenaufnahmen, auf Wunsch 60–90 Sekunden Objektvideo", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 799, "priceCurrency": "EUR", "valueAddedTaxIncluded": false } },
+              { "@type": "Offer", "name": "Komplett", "description": "Alles aus Premium, begehbarer 360-Grad-Rundgang, Online-Freistellung, virtuelle Möblierung", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 1299, "priceCurrency": "EUR", "valueAddedTaxIncluded": false } }
+            ]
+          },
           "makesOffer": [
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Immobilienfotografie" } },
             { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Drohnenaufnahmen" } },
@@ -103,7 +130,7 @@
             { "@type": "Question", "name": "Wie schnell sind die Medien fertig?", "acceptedAnswer": { "@type": "Answer", "text": "In der Regel innerhalb einer Woche. Wir besprechen kurz gemeinsam, vereinbaren einen Termin und stellen danach alles fertig digital zur Verfügung." } },
             { "@type": "Question", "name": "Was kostet es?", "acceptedAnswer": { "@type": "Answer", "text": "Das Foto-Paket Lite startet bei 399 € inkl. digitalem Aufräumen und Bildoptimierung. Premium mit Drohne und optionalem Objektvideo ab 799 €, das Komplett-Paket mit begehbarem 360-Grad-Rundgang und virtueller Möblierung ab 1.299 €. Alle Preise netto." } },
             { "@type": "Question", "name": "Ist die virtuelle Möblierung erlaubt?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, solange sie als Visualisierung erkennbar bzw. gekennzeichnet ist. Wir kennzeichnen digital möblierte Bilder auf Wunsch entsprechend, damit alles sauber und rechtssicher bleibt." } },
-            { "@type": "Question", "name": "In welcher Region sind Sie aktiv?", "acceptedAnswer": { "@type": "Answer", "text": "Schwerpunkt ist Porta Westfalica und der nahe Umkreis – u. a. Minden, Bad Oeynhausen, Herford, Bielefeld und Lübbecke. Auf Anfrage auch darüber hinaus in Ostwestfalen, persönlich vor Ort." } }
+            { "@type": "Question", "name": "In welcher Region sind Sie aktiv?", "acceptedAnswer": { "@type": "Answer", "text": "Schwerpunkt ist Porta Westfalica und der Umkreis auf beiden Seiten der Landesgrenze: in Ostwestfalen u. a. Minden, Bad Oeynhausen, Herford, Bielefeld und Lübbecke, im Landkreis Schaumburg Bückeburg, Rinteln und Stadthagen. Auf Anfrage auch darüber hinaus, persönlich vor Ort." } }
           ]
         }
       ]
@@ -133,7 +160,7 @@
       <!-- HERO -->
       <section class="hero">
         <div class="hero-inner">
-          <p class="eyebrow">Immobilienmedien für Makler · Ostwestfalen</p>
+          <p class="eyebrow">Immobilienmedien für Makler · Ostwestfalen &amp; Schaumburg</p>
           <h1>Immobilienaufnahmen für Makler in Ostwestfalen.</h1>
           <p class="hero-copy">
             Foto, Drohne, Video und 360-Grad-Rundgang, sauber produziert und online bereitgestellt.
@@ -262,7 +289,7 @@
         <div class="section-heading compact">
           <p class="eyebrow">Pakete</p>
           <h2>Pakete als Orientierung.</h2>
-          <p>Digitales Aufräumen und Bildoptimierung sind in jedem Paket enthalten. Preise netto, als ab-Orientierung – der genaue Aufwand hängt vom Objekt und der Anfahrt ab.</p>
+          <p>Digitales Aufräumen und Bildoptimierung sind in jedem Paket enthalten. Preise netto, als ab-Orientierung – der genaue Aufwand hängt vom Objekt und der Anfahrt ab. <a href="kosten-immobilienfotograf.html">Wovon der Preis abhängt</a></p>
         </div>
         <div class="pricing-grid">
           <article class="price-card">
@@ -318,6 +345,36 @@
         </div>
       </section>
 
+      <!-- EINSATZGEBIET: beide Seiten der Landesgrenze (Fahrzeiten per OSRM ab Bückeburger Str. 14, siehe scripts/staedte.mjs) -->
+      <section id="einsatzgebiet" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Einsatzgebiet</p>
+          <h2>Ostwestfalen und Schaumburg, aus einer Hand.</h2>
+          <p>Der Betrieb sitzt in Porta Westfalica, direkt an der Grenze zu Niedersachsen – Bückeburg und Rinteln liegen näher als Herford oder Bielefeld. Ungefähre Fahrzeiten ab Porta Westfalica:</p>
+        </div>
+        <div class="area-grid">
+          <div class="area-group">
+            <h3>Ostwestfalen · NRW</h3>
+            <ul class="area-list">
+              <li><a href="immobilienfotograf-minden.html">Minden <span>15–20 Min.</span></a></li>
+              <li><a href="immobilienfotograf-bad-oeynhausen.html">Bad Oeynhausen <span>25–30 Min.</span></a></li>
+              <li><a href="immobilienfotograf-herford.html">Herford <span>35–40 Min.</span></a></li>
+              <li><a href="immobilienfotograf-luebbecke.html">Lübbecke <span>35–40 Min.</span></a></li>
+              <li><a href="immobilienfotograf-bielefeld.html">Bielefeld <span>45–55 Min.</span></a></li>
+            </ul>
+          </div>
+          <div class="area-group">
+            <h3>Landkreis Schaumburg · Niedersachsen</h3>
+            <ul class="area-list">
+              <li><a href="immobilienfotograf-bueckeburg.html">Bückeburg <span>5–10 Min.</span></a></li>
+              <li><a href="immobilienfotograf-rinteln.html">Rinteln <span>10–15 Min.</span></a></li>
+              <li><a href="immobilienfotograf-stadthagen.html">Stadthagen <span>25–30 Min.</span></a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="area-note">Weitere Orte auf Anfrage.</p>
+      </section>
+
       <!-- PERSÖNLICH + KONTAKT -->
       <section id="kontakt" class="section contact-section">
         <div class="contact-grid">
@@ -329,7 +386,7 @@
               <h2>So läuft es ab.</h2>
               <ol class="steps">
                 <li><strong>Kurz gemeinsam besprechen</strong><span>Wir klären Objekt, Ziel und gewünschte Medien.</span></li>
-                <li><strong>Termin vereinbaren</strong><span>Aufnahme vor Ort in Ostwestfalen, meist ohne größere Vorbereitung.</span></li>
+                <li><strong>Termin vereinbaren</strong><span>Aufnahme vor Ort in Ostwestfalen oder im Schaumburger Land, meist ohne größere Vorbereitung.</span></li>
                 <li><strong>Nach einer Woche digital fertig</strong><span>Fotos, Video und Rundgang – aufbereitet und übergeben.</span></li>
               </ol>
               <div class="contact-actions">
@@ -339,7 +396,7 @@
               <ul class="contact-list">
                 <li><span>E-Mail</span><a href="mailto:info@immobild.ai">info@immobild.ai</a></li>
                 <li><span>Telefon</span><a href="tel:+491783248904">0178 3248904</a></li>
-                <li><span>Region</span>Ostwestfalen</li>
+                <li><span>Region</span><a href="#einsatzgebiet">Ostwestfalen &amp; Schaumburg</a></li>
               </ul>
             </div>
           </div>
@@ -429,7 +486,7 @@
           </details>
           <details>
             <summary>In welcher Region sind Sie aktiv?</summary>
-            <p>Schwerpunkt ist Porta Westfalica und der nahe Umkreis – u. a. <a href="immobilienfotograf-minden.html">Minden</a>, <a href="immobilienfotograf-bad-oeynhausen.html">Bad Oeynhausen</a>, <a href="immobilienfotograf-herford.html">Herford</a>, <a href="immobilienfotograf-bielefeld.html">Bielefeld</a> und <a href="immobilienfotograf-luebbecke.html">Lübbecke</a>. Auf Anfrage auch darüber hinaus in Ostwestfalen, persönlich vor Ort.</p>
+            <p>Schwerpunkt ist Porta Westfalica und der Umkreis auf beiden Seiten der Landesgrenze: in Ostwestfalen u. a. <a href="immobilienfotograf-minden.html">Minden</a>, <a href="immobilienfotograf-bad-oeynhausen.html">Bad Oeynhausen</a>, <a href="immobilienfotograf-herford.html">Herford</a>, <a href="immobilienfotograf-bielefeld.html">Bielefeld</a> und <a href="immobilienfotograf-luebbecke.html">Lübbecke</a>, im Landkreis Schaumburg <a href="immobilienfotograf-bueckeburg.html">Bückeburg</a>, <a href="immobilienfotograf-rinteln.html">Rinteln</a> und <a href="immobilienfotograf-stadthagen.html">Stadthagen</a>. Auf Anfrage auch darüber hinaus, persönlich vor Ort.</p>
           </details>
         </div>
       </section>
@@ -438,7 +495,7 @@
     <footer class="site-footer">
       <div>
         <strong>Immobild.ai</strong>
-        <p>Foto, Drohne, Video und 360-Grad-Rundgang für Makler in Ostwestfalen. Sauber produziert und online bereitgestellt.</p>
+        <p>Foto, Drohne, Video und 360-Grad-Rundgang für Makler in Ostwestfalen und im Schaumburger Land. Sauber produziert und online bereitgestellt.</p>
         <p class="footer-contact"><a href="mailto:info@immobild.ai">info@immobild.ai</a> · <a href="tel:+491783248904">0178 3248904</a></p>
       </div>
       <nav aria-label="Standorte">
@@ -447,6 +504,10 @@
         <a href="immobilienfotograf-herford.html">Herford</a>
         <a href="immobilienfotograf-bielefeld.html">Bielefeld</a>
         <a href="immobilienfotograf-luebbecke.html">Lübbecke</a>
+        <a href="immobilienfotograf-bueckeburg.html">Bückeburg</a>
+        <a href="immobilienfotograf-rinteln.html">Rinteln</a>
+        <a href="immobilienfotograf-stadthagen.html">Stadthagen</a>
+        <a href="kosten-immobilienfotograf.html">Kosten</a>
       </nav>
       <nav aria-label="Rechtliches">
         <a href="impressum.html">Impressum</a>
