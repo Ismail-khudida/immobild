@@ -135,8 +135,11 @@ for (const file of files) {
   for (const m of html.matchAll(/href="([^"]+)"/g)) {
     const href = m[1];
     if (/^(https?:|mailto:|tel:|\/\/)/.test(href) || href.endsWith(".css") || href.endsWith(".ico") || href.endsWith(".svg") || href.endsWith(".png") || href.endsWith(".woff2")) continue;
-    const [path, anchor] = href.split("#");
-    const target = path === "" ? file : path;
+    const [rawPath, anchor] = href.split("#");
+    // "/", "/#x", "./" und "/seite.html" sind wurzelbezogen; "" allein (nur "#x") meint dieselbe Seite
+    const rootish = /^(\/|\.\/)/.test(rawPath);
+    const path = rawPath.replace(/^\/|^\.\//, "");
+    const target = path === "" ? (rootish ? "index.html" : file) : path;
     if (!pages[target]) {
       if (!existsSync(join(ROOT, target))) err(file, `Link-Ziel existiert nicht: ${href}`);
       continue;

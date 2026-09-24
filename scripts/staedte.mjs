@@ -290,17 +290,17 @@ ${JSON.stringify(jsonld, null, 2).replace(/^/gm, "    ")}
     <a class="skip-link" href="#top">Zum Inhalt springen</a>
 
     <header class="site-header">
-      <a class="brand" href="index.html" aria-label="Immobild.ai Startseite">
+      <a class="brand" href="/" aria-label="Immobild.ai Startseite">
         <img class="brand-mark" src="favicon.svg" alt="" width="34" height="34">
         <span>Immobild.ai</span>
       </a>
       <button class="menu-button" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav">☰</button>
       <nav id="primary-nav" class="nav" aria-label="Hauptnavigation">
-        <a href="index.html#vorher-nachher">Vorher / Nachher</a>
-        <a href="index.html#leistungen">Leistungen</a>
-        <a href="index.html#pakete">Pakete</a>
+        <a href="/#vorher-nachher">Vorher / Nachher</a>
+        <a href="/#leistungen">Leistungen</a>
+        <a href="/#pakete">Pakete</a>
         <a href="makler-system.html">Für Maklerbüros</a>
-        <a href="index.html#kontakt">Kontakt</a>
+        <a href="/#kontakt">Kontakt</a>
       </nav>
       <a class="nav-cta" href="${TERMIN}" target="_blank" rel="noopener">Termin besprechen</a>
     </header>
@@ -316,7 +316,7 @@ ${JSON.stringify(jsonld, null, 2).replace(/^/gm, "    ")}
           </p>
           <div class="hero-actions">
             <a class="button primary" href="${TERMIN}" target="_blank" rel="noopener">Termin besprechen</a>
-            <a class="button ghost" href="index.html#vorher-nachher">Beispiel ansehen</a>
+            <a class="button ghost" href="/#vorher-nachher">Beispiel ansehen</a>
           </div>
         </div>
 
@@ -375,7 +375,7 @@ ${c.absaetze.map((p) => `          <p>${esc(p)}</p>`).join("\n")}
               <li>Digitales Aufräumen, Aufhellen &amp; Bildoptimierung inkl.</li>
               <li>Online-Übergabe</li>
             </ul>
-            <a href="index.html#kontakt">Lite anfragen</a>
+            <a href="/#kontakt">Lite anfragen</a>
           </article>
           <article class="price-card featured">
             <div class="badge">Häufig gewählt</div>
@@ -387,7 +387,7 @@ ${c.absaetze.map((p) => `          <p>${esc(p)}</p>`).join("\n")}
               <li>Drohnenaufnahmen</li>
               <li>Auf Wunsch 60–90 s Objektvideo</li>
             </ul>
-            <a href="index.html#kontakt">Premium anfragen</a>
+            <a href="/#kontakt">Premium anfragen</a>
           </article>
           <article class="price-card">
             <p class="package-name">Komplett</p>
@@ -398,7 +398,7 @@ ${c.absaetze.map((p) => `          <p>${esc(p)}</p>`).join("\n")}
               <li>Online-Freistellung</li>
               <li>Virtuelle Möblierung der Fotos</li>
             </ul>
-            <a href="index.html#kontakt">Komplett anfragen</a>
+            <a href="/#kontakt">Komplett anfragen</a>
           </article>
         </div>
       </section>
@@ -443,7 +443,7 @@ ${c.faq
         <p class="footer-contact"><a href="mailto:info@immobild.ai">info@immobild.ai</a> · <a href="tel:+491783248904">0178 3248904</a></p>
       </div>
       <nav aria-label="Standorte">
-        <a href="index.html">Startseite</a>
+        <a href="/">Startseite</a>
 ${others.map((o) => `        <a href="${file(o)}">${esc(o.name)}</a>`).join("\n")}
         <a href="kosten-immobilienfotograf.html">Kosten</a>
         <a href="immobilie-fotos-vorbereiten.html">Checkliste Fototermin</a>
