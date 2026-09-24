@@ -445,6 +445,8 @@ ${c.faq
       <nav aria-label="Standorte">
         <a href="index.html">Startseite</a>
 ${others.map((o) => `        <a href="${file(o)}">${esc(o.name)}</a>`).join("\n")}
+        <a href="kosten-immobilienfotograf.html">Kosten</a>
+        <a href="immobilie-fotos-vorbereiten.html">Checkliste Fototermin</a>
       </nav>
       <nav aria-label="Rechtliches">
         <a href="impressum.html">Impressum</a>

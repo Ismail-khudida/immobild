@@ -414,7 +414,12 @@ body.reveal-ready .section.is-visible { opacity: 1; transform: translateY(0); }
   .cta-bar.is-visible { transform: none; visibility: visible; transition: transform 240ms var(--ease-out), visibility 0s; }
   .cta-bar .button { width: 100%; min-height: 48px; padding: 12px 14px; font-size: 15px; white-space: nowrap; }
 }
-@media print { .cta-bar { display: none !important; } body.has-cta-bar { padding-bottom: 0; } }
+@media print {
+  .cta-bar { display: none !important; }
+  body.has-cta-bar { padding-bottom: 0; }
+  /* Noch nicht eingeblendete Abschnitte (Reveal on scroll) würden sonst leer gedruckt */
+  body.reveal-ready .section { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1020px) {

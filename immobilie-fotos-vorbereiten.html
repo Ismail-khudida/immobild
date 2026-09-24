@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Analytics: gtag.js wird erst nach Einwilligung geladen (Banner in script.js).
+         Eine gespeicherte Einwilligung wird VOR 'config' gesetzt, damit der Seitenaufruf korrekt zählt. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      (function () {
+        var ok = false;
+        try { ok = localStorage.getItem('cookieConsent') === 'granted'; } catch (e) {}
+        gtag('consent', 'default', { analytics_storage: ok ? 'granted' : 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-8G34GDTRKY');
+        if (ok) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-8G34GDTRKY';
+          document.head.appendChild(s);
+        }
+      })();
+    </script>
+    <title>Immobilie für Fotos vorbereiten: Checkliste | Immobild.ai</title>
+    <meta name="description" content="Checkliste für den Fototermin: Was Eigentümer vorher erledigen sollten – Raum für Raum, innen wie außen. Und was sich digital erledigen lässt.">
+    <meta name="author" content="Immobild.ai · Ismail Khudida">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f7f8fb">
+
+    <link rel="canonical" href="https://immobild.ai/immobilie-fotos-vorbereiten.html">
+    <meta property="og:site_name" content="Immobild.ai">
+    <meta property="og:title" content="Immobilie für den Fototermin vorbereiten – Checkliste">
+    <meta property="og:description" content="Was Eigentümer vor dem Fototermin erledigen sollten – Raum für Raum, innen wie außen. Und was sich digital erledigen lässt.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://immobild.ai/immobilie-fotos-vorbereiten.html">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:image" content="https://immobild.ai/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Immobilie für den Fototermin vorbereiten – Checkliste">
+    <meta name="twitter:description" content="Was Eigentümer vor dem Fototermin erledigen sollten – Raum für Raum, innen wie außen.">
+    <meta name="twitter:image" content="https://immobild.ai/assets/og-image.jpg">
+
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <link rel="preload" as="font" href="assets/fonts/PlusJakartaSans.woff2" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+
+    <!-- Seiteneigene Stile: bewusst hier statt in styles.css -->
+    <style>
+      .guide-hero { max-width: var(--maxw); margin: 0 auto; padding: 132px clamp(20px, 6vw, 40px) 28px; }
+      .guide-hero h1 { max-width: 16ch; -webkit-hyphens: none; hyphens: none; text-wrap: balance; }
+      .guide-answer { max-width: 62ch; margin: 18px 0 26px; font-size: clamp(17px, 1.5vw, 19px); color: var(--muted); }
+      .guide-answer strong { color: var(--ink); }
+      .button[hidden] { display: none; }
+
+      .share-box { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 6vw, 40px); }
+      .share-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; padding: 18px 22px; background: #fff; border: 1px solid var(--hairline); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; box-shadow: var(--shadow); }
+      .share-inner p { flex: 1 1 340px; margin: 0; font-size: 15px; color: var(--muted); }
+      .share-inner p strong { color: var(--ink); }
+      .share-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+      .share-actions .button { min-height: 42px; padding: 10px 18px; font-size: 14px; }
+
+      .guide-body { max-width: 820px; }
+      .guide-body p, .guide-body li { color: var(--muted); }
+      .guide-body strong, .guide-body b { color: var(--ink); }
+      .guide-body a:not(.button) { color: var(--accent-text); font-weight: 700; }
+
+      .quick { display: grid; gap: 12px; margin: 22px 0 0; padding: 0; list-style: none; counter-reset: quick; }
+      .quick li { position: relative; padding: 16px 18px 16px 58px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius); box-shadow: var(--shadow); }
+      .quick li::before { counter-increment: quick; content: counter(quick); position: absolute; left: 16px; top: 15px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 800; }
+
+      .rooms { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+      .room { padding: 22px 24px 14px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius); box-shadow: var(--shadow); }
+      .room h3 { margin-bottom: 10px; font-size: 18px; font-weight: 800; }
+      .todo { margin: 0; padding: 0; list-style: none; }
+      .todo li { position: relative; padding: 9px 0 9px 30px; font-size: 15px; line-height: 1.5; color: var(--muted); }
+      .todo li + li { border-top: 1px solid var(--hairline); }
+      .todo li::before { content: ""; position: absolute; left: 0; top: 11px; width: 16px; height: 16px; border: 2px solid rgba(20,23,28,0.28); border-radius: 4px; background: #fff; }
+
+      .day-list { display: grid; gap: 12px; margin: 22px 0 0; padding: 0; list-style: none; }
+      .day-list li { padding: 16px 18px; background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius); }
+
+      .guide-figure { margin: 26px 0 8px; }
+      .guide-figure .ba-slider { border-radius: var(--radius-lg); }
+      .guide-figure figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); text-align: center; }
+      .rule { margin: 22px 0 0; padding: 18px 20px; border-left: 3px solid var(--ink); background: #fff; border-radius: 0 var(--radius) var(--radius) 0; box-shadow: var(--shadow); }
+      .rule p { margin: 0; }
+
+      .print-only { display: none; }
+
+      @media (max-width: 760px) { .rooms { grid-template-columns: 1fr; } }
+
+      /* Druck: Checkliste für Eigentümer auf A4 – ohne Navigation, Buttons, FAQ und Kontaktbereich */
+      @media print {
+        @page { margin: 14mm 14mm 16mm; }
+        body { background: #fff; font-size: 10.5pt; }
+        body::before { display: none; }
+        .site-header, .site-footer, .skip-link, .guide-actions, .share-box, .guide-figure, .faq-section, #kontakt, .cookie-banner { display: none !important; }
+        .guide-hero { padding: 0 0 4px; }
+        .guide-hero h1 { max-width: none; font-size: 20pt; margin-bottom: 6px; }
+        .guide-answer { margin: 0 0 4px; font-size: 10.5pt; line-height: 1.45; }
+        .section { max-width: none; padding: 8px 0 !important; }
+        .eyebrow { margin-bottom: 4px; }
+        .section h2 { font-size: 14pt; margin-bottom: 4px; }
+        /* Überschriften nie allein am Seitenende */
+        .eyebrow, .section h2, #checkliste .guide-body { break-after: avoid; page-break-after: avoid; }
+        .quick, .day-list { gap: 0; margin-top: 4px; }
+        .quick li, .day-list li { padding: 3px 0 3px 26px; border: 0; background: none; box-shadow: none; font-size: 10pt; line-height: 1.45; break-inside: avoid; }
+        .day-list li { padding-left: 0; }
+        .quick li::before { top: 4px; left: 0; width: 17px; height: 17px; font-size: 9pt; }
+        .rooms { grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 2px; }
+        .room { padding: 10px 12px 4px; box-shadow: none; break-inside: avoid; }
+        .room h3 { font-size: 11pt; margin-bottom: 2px; }
+        .todo li { padding: 3px 0 3px 22px; font-size: 9.5pt; line-height: 1.4; }
+        .todo li::before { top: 5px; width: 11px; height: 11px; }
+        .rule { margin-top: 8px; padding: 8px 12px; box-shadow: none; }
+        .guide-body p { margin-bottom: 6px; font-size: 10pt; line-height: 1.45; }
+        .print-only { display: block; margin-top: 10px; font-size: 9pt; color: var(--muted); }
+      }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "https://immobild.ai/immobilie-fotos-vorbereiten.html#article",
+          "headline": "Immobilie für den Fototermin vorbereiten – Checkliste",
+          "description": "Checkliste für den Fototermin: Was Eigentümer vorher erledigen sollten – Raum für Raum, innen wie außen. Und was sich digital erledigen lässt.",
+          "url": "https://immobild.ai/immobilie-fotos-vorbereiten.html",
+          "mainEntityOfPage": "https://immobild.ai/immobilie-fotos-vorbereiten.html",
+          "inLanguage": "de-DE",
+          "image": "https://immobild.ai/assets/og-image.jpg",
+          "datePublished": "2026-09-25",
+          "dateModified": "2026-09-25",
+          "author": { "@type": "Person", "name": "Ismail Khudida", "url": "https://immobild.ai/" },
+          "publisher": { "@type": "Organization", "name": "Immobild.ai", "url": "https://immobild.ai/", "logo": { "@type": "ImageObject", "url": "https://immobild.ai/assets/apple-touch-icon.png" } },
+          "isPartOf": { "@id": "https://immobild.ai/#website" },
+          "about": { "@id": "https://immobild.ai/#business" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://immobild.ai/" },
+            { "@type": "ListItem", "position": 2, "name": "Checkliste Fototermin", "item": "https://immobild.ai/immobilie-fotos-vorbereiten.html" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Muss die Immobilie für die Fotos perfekt aufgeräumt sein?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Wichtig sind freie Flächen, offene Vorhänge und eingeschaltetes Licht. Kleine Unordnung, Kabel oder einzelne Gegenstände werden bei Immobild.ai in der Bearbeitung entfernt – digitales Aufräumen ist in jedem Paket enthalten." } },
+            { "@type": "Question", "name": "Welche Tageszeit ist für Immobilienfotos am besten?", "acceptedAnswer": { "@type": "Answer", "text": "Innenräume gelingen an jedem hellen Tag. Für Außenaufnahmen hängt die beste Zeit von der Ausrichtung des Hauses ab: Die Fassade sollte Licht bekommen, statt im Gegenlicht zu liegen. Den passenden Zeitpunkt stimmen wir bei der Terminplanung ab." } },
+            { "@type": "Question", "name": "Werden Mängel auf den Fotos wegretuschiert?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Seriöse Bearbeitung entfernt, was nicht zur Immobilie gehört – Unordnung, Kabel, persönliche Gegenstände. Risse, Feuchteflecken oder Schäden bleiben sichtbar, denn Exposé-Fotos müssen den tatsächlichen Zustand zeigen." } },
+            { "@type": "Question", "name": "Dürfen Bewohner und Haustiere beim Termin zu Hause sein?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Am einfachsten ist es, wenn Tiere in dem Raum bleiben, der zuletzt fotografiert wird, und Bewohner jeweils in einen Raum wechseln, der gerade nicht im Bild ist." } }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#top">Zum Inhalt springen</a>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Immobild.ai Startseite">
+        <img class="brand-mark" src="favicon.svg" alt="" width="34" height="34">
+        <span>Immobild.ai</span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <nav id="primary-nav" class="nav" aria-label="Hauptnavigation">
+        <a href="index.html#vorher-nachher">Vorher / Nachher</a>
+        <a href="index.html#leistungen">Leistungen</a>
+        <a href="index.html#pakete">Pakete</a>
+        <a href="makler-system.html">Für Maklerbüros</a>
+        <a href="index.html#kontakt">Kontakt</a>
+      </nav>
+      <a class="nav-cta" href="https://calendar.app.google/85Hebvgn6tX9ZhNb6" target="_blank" rel="noopener">Termin besprechen</a>
+    </header>
+
+    <main id="top">
+      <section class="guide-hero">
+        <p class="eyebrow">Ratgeber · Fototermin</p>
+        <h1>Immobilie für den Fototermin vorbereiten</h1>
+        <p class="guide-answer">
+          Kurz gesagt: <strong>Licht an, Vorhänge auf, Flächen frei, Persönliches weg, Autos aus der Einfahrt.</strong>
+          Mehr braucht es meist nicht – kleine Unordnung, Kabel oder ein vergessener Wäschekorb werden bei Immobild.ai
+          in der Bearbeitung entfernt. Die Checkliste unten geht Raum für Raum durch und lässt sich ausdrucken oder
+          direkt weiterleiten.
+        </p>
+        <div class="hero-actions guide-actions">
+          <a class="button primary" href="index.html#kontakt">Fototermin anfragen</a>
+          <button class="button ghost" type="button" data-print hidden>Checkliste drucken</button>
+        </div>
+      </section>
+
+      <aside class="share-box" aria-label="Checkliste weitergeben">
+        <div class="share-inner">
+          <p><strong>Für Makler:</strong> Schicken Sie Eigentümern vor dem Termin einfach diese Seite – per E-Mail oder als Link. Ausgedruckt ist sie eine kompakte Checkliste zum Abhaken.</p>
+          <div class="share-actions">
+            <a class="button ghost" href="mailto:?subject=Checkliste%20f%C3%BCr%20den%20Fototermin&amp;body=Guten%20Tag%2C%0A%0Azur%20Vorbereitung%20des%20Fototermins%20hier%20eine%20kurze%20Checkliste%3A%0Ahttps%3A%2F%2Fimmobild.ai%2Fimmobilie-fotos-vorbereiten.html%0A%0AViele%20Gr%C3%BC%C3%9Fe">Per E-Mail weiterleiten</a>
+            <button class="button ghost" type="button" data-share hidden>Link kopieren</button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="section">
+        <div class="guide-body">
+          <p class="eyebrow">Schnellstart</p>
+          <h2>Das Wichtigste in fünf Minuten.</h2>
+          <ol class="quick">
+            <li><b>Alle Lampen an</b> – auch tagsüber. Räume wirken heller und wärmer; unterschiedliche Lichtfarben werden in der Bearbeitung ausgeglichen.</li>
+            <li><b>Vorhänge und Rollläden ganz öffnen.</b> Tageslicht ist das beste Licht für Innenräume.</li>
+            <li><b>Flächen freiräumen.</b> Arbeitsplatten, Tische, Fensterbänke und Ablagen im Bad möglichst leer – freie Flächen lassen Räume größer wirken.</li>
+            <li><b>Persönliches wegräumen.</b> Familienfotos, Post, Dokumente, Medikamente und Wertsachen gehören nicht ins Exposé.</li>
+            <li><b>Außen Platz schaffen.</b> Autos aus Einfahrt und Hof, Mülltonnen außer Sicht.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="checkliste" class="section">
+        <div class="guide-body">
+          <p class="eyebrow">Raum für Raum</p>
+          <h2>Die Checkliste zum Abhaken.</h2>
+          <p>Nicht jeder Punkt passt zu jedem Objekt – abhaken, was zutrifft.</p>
+        </div>
+        <div class="rooms">
+          <article class="room">
+            <h3>Außen, Garten &amp; Balkon</h3>
+            <ul class="todo">
+              <li>Autos, Anhänger und Fahrräder aus Einfahrt und Hof holen</li>
+              <li>Mülltonnen, Gartenschlauch, Werkzeug und Spielzeug wegräumen</li>
+              <li>Rasen mähen, Laub fegen, Wege frei machen – am besten ein, zwei Tage vorher</li>
+              <li>Gartenmöbel ordentlich aufstellen, Schutzhüllen abnehmen</li>
+              <li>Balkon und Terrasse: Wäscheständer, Leergut und Grillabdeckung weg, Verblühtes entfernen</li>
+              <li>Namensschilder an Klingel und Briefkasten abkleben oder in der Bearbeitung unkenntlich machen lassen</li>
+            </ul>
+          </article>
+          <article class="room">
+            <h3>Wohn- &amp; Essbereich</h3>
+            <ul class="todo">
+              <li>Zeitschriften, Fernbedienungen, Ladekabel und Spielkonsolen wegräumen</li>
+              <li>Kissen aufschütteln, Decken falten</li>
+              <li>Fernseher ausschalten</li>
+              <li>Böden frei: Körbe, Taschen und Schuhe aus dem Raum</li>
+              <li>Esstisch leer oder schlicht mit einer Vase oder Schale</li>
+            </ul>
+          </article>
+          <article class="room">
+            <h3>Küche</h3>
+            <ul class="todo">
+              <li>Arbeitsflächen fast leer – höchstens ein, zwei Dinge wie Obstschale oder Kaffeemaschine</li>
+              <li>Kühlschranktür frei von Magneten, Zetteln und Fotos</li>
+              <li>Spüle leer; Spülmittel, Schwämme und Geschirrtücher weg</li>
+              <li>Mülleimer und Pfandflaschen außer Sicht</li>
+            </ul>
+          </article>
+          <article class="room">
+            <h3>Bad</h3>
+            <ul class="todo">
+              <li>Zahnbürsten, Kosmetik, Rasierer und Medikamente in die Schränke</li>
+              <li>Toilettendeckel schließen</li>
+              <li>Frische, einfarbige Handtücher ordentlich aufhängen – oder ganz weg</li>
+              <li>Spiegel, Armaturen und Duschwand putzen: Kalkflecken sieht man auf Fotos</li>
+              <li>Badematten, Putzmittel und Wäschekörbe wegräumen</li>
+            </ul>
+          </article>
+          <article class="room">
+            <h3>Schlaf- &amp; Kinderzimmer</h3>
+            <ul class="todo">
+              <li>Betten glatt beziehen, Tagesdecke auflegen</li>
+              <li>Nachttische bis auf die Lampe freiräumen</li>
+              <li>Kleidung, Wäscheständer und Bügelbrett wegräumen</li>
+              <li>Spielzeug in Kisten; Namen, Kinderfotos und Bilder mit Namen abnehmen</li>
+            </ul>
+          </article>
+          <article class="room">
+            <h3>Arbeitszimmer, Flur &amp; Keller</h3>
+            <ul class="todo">
+              <li>Nichts Vertrauliches sichtbar: Unterlagen, Bildschirme, Pinnwände</li>
+              <li>Garderobe auf wenige Jacken und Schuhe reduzieren</li>
+              <li>Keller, Abstellraum und Garage: Gänge frei, damit die Raumgröße erkennbar ist</li>
+              <li>Heizungs- und Technikraum zugänglich machen – Interessenten fragen danach</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="guide-body">
+          <p class="eyebrow">Am Termin</p>
+          <h2>Am Tag des Fototermins.</h2>
+          <ul class="day-list">
+            <li><b>Licht:</b> alle Lampen an, auch in Fluren und Nebenräumen; Rollläden ganz hoch.</li>
+            <li><b>Fenster:</b> wenn es sich einrichten lässt, vorher putzen – im Gegenlicht sieht man Schlieren.</li>
+            <li><b>Haustiere:</b> Näpfe, Körbchen und Katzentoilette kurz außer Sicht; die Tiere am besten in den Raum, der zuletzt fotografiert wird.</li>
+            <li><b>Bewohner:</b> einfach jeweils in einen Raum wechseln, der gerade nicht fotografiert wird.</li>
+            <li><b>Wetter:</b> Innenaufnahmen gelingen an jedem hellen Tag. Drohnen fliegen nicht bei Regen oder starkem Wind – dann wird der Außenteil in Absprache verschoben.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="guide-body">
+          <p class="eyebrow">Bearbeitung</p>
+          <h2>Was Sie nicht selbst erledigen müssen.</h2>
+          <p>Perfekt muss nichts sein. <strong>Digitales Aufräumen ist in jedem Paket enthalten:</strong> Kabel, Steckdosenleisten, Magnetzettel, einzelne herumliegende Dinge oder ein Wäschekorb verschwinden in der Bearbeitung. Leere Räume lassen sich virtuell möblieren – im Komplett-Paket inklusive, zu den anderen Paketen dazubuchbar. Was das kostet, steht auf der Seite <a href="kosten-immobilienfotograf.html">Kosten eines Immobilienfotografen</a>.</p>
+          <figure class="guide-figure">
+            <div class="ba-slider" aria-label="Vergleich unaufgeräumt gegen digital aufgeräumt">
+              <img class="ba-img ba-after" src="assets/ba-tidy.webp" srcset="assets/ba-tidy-640.webp 640w, assets/ba-tidy-960.webp 960w, assets/ba-tidy.webp 1264w" sizes="(max-width: 860px) calc(100vw - 40px), 820px" width="1264" height="848" alt="Nachher – digital aufgeräumt" loading="lazy" decoding="async">
+              <div class="ba-before-wrap"><img class="ba-img ba-before" src="assets/ba-messy.webp" srcset="assets/ba-messy-640.webp 640w, assets/ba-messy-960.webp 960w, assets/ba-messy.webp 1264w" sizes="(max-width: 860px) calc(100vw - 40px), 820px" width="1264" height="848" alt="Vorher – unaufgeräumt" loading="lazy" decoding="async"></div>
+              <span class="ba-badge ba-badge-before">Unaufgeräumt</span>
+              <span class="ba-badge ba-badge-after">Aufgeräumt</span>
+              <div class="ba-divider" aria-hidden="true"><span class="ba-knob"></span></div>
+              <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Regler: unaufgeräumt gegen aufgeräumt">
+            </div>
+            <figcaption>Demonstration des digitalen Aufräumens. Regler ziehen zum Vergleichen.</figcaption>
+          </figure>
+          <div class="rule">
+            <p><strong>Was Bearbeitung nicht darf: Mängel verstecken.</strong> Seriöse Bearbeitung entfernt, was nicht zur Immobilie gehört. Risse, Feuchteflecken oder Schäden bleiben sichtbar – und virtuell möblierte Bilder sollten als Visualisierung gekennzeichnet sein.</p>
+          </div>
+          <p class="print-only">Checkliste von Immobild.ai · Immobilienfotos, Drohne, Video und 360-Grad-Rundgang in Ostwestfalen und im Schaumburger Land · immobild.ai · 0178 3248904</p>
+        </div>
+      </section>
+
+      <section class="section faq-section">
+        <div class="section-heading compact">
+          <p class="eyebrow">Häufige Fragen</p>
+          <h2>Vorbereitung, kurz beantwortet.</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Muss die Immobilie für die Fotos perfekt aufgeräumt sein?</summary>
+            <p>Nein. Wichtig sind freie Flächen, offene Vorhänge und eingeschaltetes Licht. Kleine Unordnung, Kabel oder einzelne Gegenstände werden bei Immobild.ai in der Bearbeitung entfernt – digitales Aufräumen ist in jedem Paket enthalten.</p>
+          </details>
+          <details>
+            <summary>Welche Tageszeit ist für Immobilienfotos am besten?</summary>
+            <p>Innenräume gelingen an jedem hellen Tag. Für Außenaufnahmen hängt die beste Zeit von der Ausrichtung des Hauses ab: Die Fassade sollte Licht bekommen, statt im Gegenlicht zu liegen. Den passenden Zeitpunkt stimmen wir bei der Terminplanung ab.</p>
+          </details>
+          <details>
+            <summary>Werden Mängel auf den Fotos wegretuschiert?</summary>
+            <p>Nein. Seriöse Bearbeitung entfernt, was nicht zur Immobilie gehört – Unordnung, Kabel, persönliche Gegenstände. Risse, Feuchteflecken oder Schäden bleiben sichtbar, denn Exposé-Fotos müssen den tatsächlichen Zustand zeigen.</p>
+          </details>
+          <details>
+            <summary>Dürfen Bewohner und Haustiere beim Termin zu Hause sein?</summary>
+            <p>Ja. Am einfachsten ist es, wenn Tiere in dem Raum bleiben, der zuletzt fotografiert wird, und Bewohner jeweils in einen Raum wechseln, der gerade nicht im Bild ist.</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="kontakt" class="section contact-section">
+        <div class="section-heading compact">
+          <p class="eyebrow">Fototermin</p>
+          <h2>Termin für Ihr Objekt anfragen.</h2>
+          <p>Foto, Drohne, Video und 360-Grad-Rundgang in Ostwestfalen und im Schaumburger Land – in der Regel innerhalb einer Woche fertig bearbeitet. Pakete ab 399&nbsp;€ netto, Details auf der <a href="kosten-immobilienfotograf.html">Preisseite</a>.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="button primary" href="index.html#kontakt">Zum Anfrageformular</a>
+          <a class="button ghost" href="tel:+491783248904">0178 3248904</a>
+          <a class="button ghost" href="https://calendar.app.google/85Hebvgn6tX9ZhNb6" target="_blank" rel="noopener">Termin besprechen</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Immobild.ai</strong>
+        <p>Foto, Drohne, Video und 360-Grad-Rundgang für Makler in Ostwestfalen und im Schaumburger Land. Sauber produziert und online bereitgestellt.</p>
+        <p class="footer-contact"><a href="mailto:info@immobild.ai">info@immobild.ai</a> · <a href="tel:+491783248904">0178 3248904</a></p>
+      </div>
+      <nav aria-label="Standorte">
+        <a href="index.html">Startseite</a>
+        <a href="immobilienfotograf-minden.html">Minden</a>
+        <a href="immobilienfotograf-bad-oeynhausen.html">Bad Oeynhausen</a>
+        <a href="immobilienfotograf-herford.html">Herford</a>
+        <a href="immobilienfotograf-bielefeld.html">Bielefeld</a>
+        <a href="immobilienfotograf-luebbecke.html">Lübbecke</a>
+        <a href="immobilienfotograf-bueckeburg.html">Bückeburg</a>
+        <a href="immobilienfotograf-rinteln.html">Rinteln</a>
+        <a href="immobilienfotograf-stadthagen.html">Stadthagen</a>
+        <a href="kosten-immobilienfotograf.html">Kosten</a>
+      </nav>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </footer>
+  </body>
+</html>

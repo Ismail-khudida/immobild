@@ -9,6 +9,7 @@ document.addEventListener("click", (e) => {
   if (!a) return;
   const href = a.getAttribute("href");
   if (href.startsWith("tel:")) track("contact_click", { method: "telefon" });
+  else if (href.startsWith("mailto:?")) track("share", { method: "email", content_type: "checkliste" }); // Weiterleiten ohne Empfänger
   else if (href.startsWith("mailto:")) track("contact_click", { method: "email" });
   else if (href.includes("calendar.app.google")) track("contact_click", { method: "termin" });
 });
@@ -257,6 +258,43 @@ updateQuote();
     document.dispatchEvent(new CustomEvent("cookiebanner:closed"));
   });
 })();
+
+/* ---------- Drucken / Link teilen (Checkliste) ----------
+   Die Buttons stehen mit hidden im HTML und werden erst hier sichtbar – ohne JS gibt es sie nicht. */
+document.querySelectorAll("[data-print]").forEach((b) => {
+  if (typeof window.print !== "function") return;
+  b.hidden = false;
+  b.addEventListener("click", () => { track("checkliste_drucken", {}); window.print(); });
+});
+document.querySelectorAll("[data-share]").forEach((b) => {
+  const canShare = typeof navigator.share === "function";
+  const canCopy = !!(navigator.clipboard && navigator.clipboard.writeText);
+  if (!canShare && !canCopy) return;
+  const label = canShare ? "Link teilen" : "Link kopieren";
+  b.textContent = label;
+  b.hidden = false;
+  b.addEventListener("click", async () => {
+    const url = location.href.split("#")[0];
+    if (canShare) {
+      try {
+        await navigator.share({ title: document.title, url });
+        track("share", { method: "web_share", content_type: "checkliste" });
+        return;
+      } catch (e) {
+        if (e && e.name === "AbortError") return; // Teilen-Dialog geschlossen
+        if (!canCopy) return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      b.textContent = "Link kopiert ✓";
+      track("share", { method: "link_kopiert", content_type: "checkliste" });
+    } catch (_) {
+      b.textContent = "Kopieren nicht möglich";
+    }
+    setTimeout(() => { b.textContent = label; }, 2500);
+  });
+});
 
 /* ---------- Mobile Kontaktleiste: Anrufen + Anfragen, sobald der Hero verlassen ist ---------- */
 (function ctaBar() {
