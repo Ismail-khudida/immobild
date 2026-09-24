@@ -61,20 +61,31 @@ Gemessen, umgesetzt, live verifiziert (Details in den Commits vom 24.09.):
 - **Fixes:** FAQ-Schema der Startseite war nicht synchron (Richtlinienverstoß), Textlink-Kontrast, unsichtbare Textlinks.
 - **Werkzeuge:** `scripts/seo-check.mjs` (QA vor jedem Commit), `scripts/staedte.mjs` (Städteseiten-Generator).
 
+## 4c) Conversion-Runde (25.09.2026) — ERLEDIGT
+
+- **Mobile Kontaktleiste** („Anrufen" + „Objekt anfragen") auf allen Seiten mit Kontaktbereich — unter 1020 px gab es vorher keinen festen Kontaktweg, weil der Header-Button ausgeblendet ist.
+- **Konfigurator-Fehler:** Komplett-Paket berechnete +180 € für die Möblierung, obwohl sie laut Startseite und Kostenseite enthalten ist. Behoben; Aufpreis bei Lite/Premium steht jetzt sichtbar an der Checkbox.
+- **Formular auf dem Handy:** Preis bricht nicht mehr um, „(optional)" und Datenschutz-Link sauber gesetzt.
+- **Neue Seite „Immobilie für Fotos vorbereiten"** (Checkliste): Ratgeber-Traffic + Weiterleit-Material für Makler (Mailto-Vorlage, Link teilen, Druck auf 2 A4-Seiten).
+- Kontrast Makler-Seite (Barrierefreiheit 96 → 100), Druck-Fix für alle Seiten.
+
 **Noch offen (SEO):**
 1. **Google Business Profile verifizieren** (Video) — bleibt der größte einzelne Hebel für lokale Anfragen.
 2. **SEMrush:** Abo aktiv, aber 0 API-Units für MCP — Keyword-Volumen, Backlinks, Rankings, Wettbewerber-Gap erst nach Aufstockung (semrush.com/mcp-access). Position Tracking im SEMrush-Projekt steht auf USA/Englisch → auf Deutschland umstellen.
 3. **Branchenverzeichnisse (NAP-Einträge, Konto nötig → Ismail):** gelbeseiten.de, 11880.com, meinestadt.de, trustlocal.de, houzz.de, offenblende.de (Fotografen-Marktplatz). Überall exakt: „Immobild.ai · Bückeburger Str. 14, 32457 Porta Westfalica · 0178 3248904 · https://immobild.ai“.
-4. **Echte Referenzen:** Sobald der erste Makler-Auftrag da ist, eigene Objektfotos je Stadt statt Beispielbildern — stärkster Hebel gegen Duplicate Content und für Vertrauen.
+4. **Indexierung Checkliste** in der Search Console beantragen (am 25.09. war das Tageskontingent nach 10 Anträgen erschöpft; Sitemap ist neu eingereicht).
+5. **Echte Referenzen:** Sobald der erste Makler-Auftrag da ist, eigene Objektfotos je Stadt statt Beispielbildern — stärkster Hebel gegen Duplicate Content und für Vertrauen.
 
 ## 5) Was Ismail tun muss (kann keine Software erledigen)
 
 1. **Liste bauen** — Makler in Minden, Porta Westfalica, Bad Oeynhausen, Herford, Bielefeld, Lübbecke, Osnabrück, Hannover. Über ImmoScout24-Maklersuche, Google Maps, IVD-Verzeichnis. Realistisch 150–300 Namen, ein paar Stunden Arbeit.
-2. **Zeigen statt reden** — Ein aktuelles Objekt mit schlechten Fotos suchen, **ein** Bild virtuell möblieren, hinschicken:
+2. **Zeigen statt reden** — Ein aktuelles Objekt mit schlechten Fotos suchen, **ein** Bild virtuell möblieren oder digital aufräumen, **ausgedruckt per Brief schicken** (Farbe, echte Briefmarke, unterschrieben) oder persönlich im Büro vorbeibringen:
    > „Bin über Ihr Objekt in der [Straße] gestolpert. Hab das Wohnzimmer mal virtuell möbliert — anbei, können Sie behalten. Falls Sie sowas öfter brauchen, melden Sie sich."
 
-   15 Minuten Aufwand, kein Pitch, ein Geschenk. **Nur 1:1 an den Makler schicken, nicht öffentlich zeigen** — die Originalfotos gehören ihm.
-3. **Zehn pro Woche**, nach drei Tagen anrufen. Nach vier Wochen messen, was passiert ist, statt vorher Quoten zu schätzen.
+   15 Minuten Aufwand, kein Pitch, ein Geschenk. **Nur 1:1 an den Makler, nicht öffentlich zeigen** — die Originalfotos gehören ihm. Virtuell möblierte Fassung als „Visualisierung" kennzeichnen.
+
+   **Nicht per E-Mail, Kontaktformular, WhatsApp oder Facebook:** Werbung über elektronische Post braucht auch unter Unternehmen eine *vorherige ausdrückliche* Einwilligung (§ 7 Abs. 2 UWG) — sonst Abmahnrisiko. Brief und persönlicher Besuch sind als Erstkontakt zulässig (Stand 25.09.2026, Quelle: IHK Nord Westfalen; keine Rechtsberatung).
+3. **Zehn pro Woche**, nach drei bis fünf Tagen **persönlich vorbeischauen** — nicht kalt anrufen: Bei Unternehmen reicht „die Leistung könnte nützlich sein" nicht als mutmaßliche Einwilligung für Werbeanrufe (IHK Nord Westfalen). Telefon und E-Mail erst, wenn der Makler reagiert oder um Kontakt gebeten hat. Als zweites Geschenk die ausgedruckte [Checkliste für Eigentümer](https://immobild.ai/immobilie-fotos-vorbereiten.html) mitbringen. Nach vier Wochen messen, was passiert ist, statt vorher Quoten zu schätzen.
 4. Beim Shoot vor Ort die kaputten Abläufe ansehen → das System verkaufen.
 
 ## 6) Offene Schwachstelle

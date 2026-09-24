@@ -1,0 +1,12 @@
+{
+  "name": "immobild-tests",
+  "private": true,
+  "type": "module",
+  "description": "Browser-Tests (Headless Chrome) für immobild.ai – nicht Teil der Website",
+  "scripts": {
+    "test": "node browser.test.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^23.11.1"
+  }
+}

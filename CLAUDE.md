@@ -22,6 +22,7 @@ Statisches HTML, kein Build-Schritt. Gemeinsames `styles.css`, gemeinsames `scri
 - `makler-system.html` — die Systeme für Maklerbüros (Anfrage-Automatik, Eigentümer-Radar, Objekt-Seiten)
 - `immobilienfotograf-*.html` — 8 Städteseiten (NRW: Minden, Bad Oeynhausen, Herford, Lübbecke, Bielefeld · Niedersachsen: Bückeburg, Rinteln, Stadthagen). **Werden aus `scripts/staedte.mjs` generiert — nie von Hand bearbeiten**, sonst überschreibt der nächste Lauf die Änderung. Neue Stadt = Datensatz dort + `node scripts/staedte.mjs` + Sitemap + Einsatzgebiet-Liste auf der Startseite + Fußzeilen der übrigen Seiten + `llms.txt`.
 - `kosten-immobilienfotograf.html` — „Was kostet ein Immobilienfotograf?“: Pakete, Größenzuschläge (müssen zu den `data-price`-Werten im Konfigurator der Startseite passen), Vergleichs-Checkliste
+- `immobilie-fotos-vorbereiten.html` — Ratgeber/Checkliste für Eigentümer vor dem Fototermin: zum Weiterleiten (Mailto-Vorlage, `data-share`) und Drucken (`data-print`, eigenes Druck-CSS, 2 A4-Seiten). Buttons stehen mit `hidden` im HTML und werden erst von `script.js` eingeblendet.
 - `bewertung.html` — öffentliche Demo des Bewertungsrechners (bettet das Widget wie ein Makler-Kunde ein)
 - `radar/` — der Eigentümer-Radar als vermietbares Produkt: iframe-Widget (`index.html` + `radar.js` + `radar.css`), Rechenlogik (`calc.js`, Tests: `node radar/calc.test.mjs`), Einbett-Loader (`embed.js`), Mandanten (`tenants/<id>.json`), Richtwerte (`data/richtwerte.json`). **Anleitung für neue Makler-Kunden: [EINBETTUNG.md](EINBETTUNG.md).** Lead-Routing (Tenant → Postfach) liegt bewusst im Worker (`RADAR_TENANTS`), nicht in der öffentlichen JSON.
 
@@ -34,7 +35,7 @@ Statisches HTML, kein Build-Schritt. Gemeinsames `styles.css`, gemeinsames `scri
 node scripts/seo-check.mjs
 ```
 
-Prüft alle Seiten deterministisch: Title/Description-Länge, genau ein H1, Canonical, JSON-LD, **FAQ-Sync sichtbar ↔ Schema**, Breadcrumbs, Bilder, interne Links inkl. Anker, Sitemap. Muss mit 0 Fehlern enden. Performance messen: `npx lighthouse@12 <url> --form-factor=mobile` (die PageSpeed-API ist anonym oft im Tageslimit).
+Prüft alle Seiten deterministisch: Title/Description-Länge, genau ein H1, Canonical, JSON-LD, **FAQ-Sync sichtbar ↔ Schema**, Breadcrumbs, Bilder, interne Links inkl. Anker, Sitemap. Muss mit 0 Fehlern enden. Verhalten im Browser (Kontaktleiste, Konfigurator-Preise, Checkliste inkl. Druck-PDF): `cd tests && npm install && node browser.test.mjs` (lokal gegen `python3 -m http.server 4321` oder mit URL-Argument gegen live). Performance messen: `npx lighthouse@12 <url> --form-factor=mobile` (die PageSpeed-API ist anonym oft im Tageslimit).
 
 ## Stolperfallen
 
@@ -45,6 +46,12 @@ Prüft alle Seiten deterministisch: Title/Description-Länge, genau ein H1, Cano
 - **Hero-Bilder (Startseite + Städteseiten):** Nur das sichtbare Kamera-Bild lädt sofort (`fetchpriority="high"`, `srcset`). Drohne/360° tragen ihr Bild in `data-src`/`data-srcset` und werden von `script.js` erst nach `window.load` geladen – sonst konkurrieren sie mit dem LCP-Bild (vorher LCP 6,3 s, danach 1,8 s). Kein `<link rel="preload">` fürs Hero-Bild (Doppel-Download-Risiko bei srcset in älteren Safaris).
 - **Neue Inhaltsbilder** immer mit 640w/960w-Varianten: `magick bild.webp -resize 640x -quality 80 -define webp:method=6 bild-640.webp` (dito 960) und `srcset`/`sizes` setzen.
 - **Google Analytics lädt erst nach Einwilligung.** Das Inline-Snippet im `<head>` jeder Seite liest die gespeicherte Einwilligung und setzt sie VOR `config`; `script.js` lädt gtag.js nach Klick auf „Akzeptieren“. Neue Seiten: das Snippet 1:1 von einer bestehenden Seite übernehmen. Lead-Events: `generate_lead` (Formular), `contact_click` (Telefon/E-Mail/Termin).
+- **Mobile Kontaktleiste:** `script.js` hängt sie automatisch an jede Seite mit `id="kontakt"` (unter 1020 px, nach dem Hero, weg im Kontaktbereich und solange der Cookie-Banner offen ist). Button-Text per `data-cta-label` am Kontakt-Element (makler-system: „Gebiet prüfen"); max. ~15 Zeichen, sonst läuft er auf 320-px-Handys über. Kein weiteres fixiertes Element unten ergänzen, ohne das abzustimmen.
+- **`hidden` wirkt nicht gegen eigenes `display`:** `.check-row` hat `display:flex !important`, `.button` `display:inline-flex` — dafür gibt es `.check-row[hidden]` bzw. seiteneigen `.button[hidden]`. Bei neuen Bausteinen mitdenken.
+- **Formular-Labels sind Grid (`.quote-form label`), `.check-row` ist Flex:** Beschriftung + `(optional)` bzw. Text mit Link in *ein* `<span>` packen, sonst landet jedes Stück in einer eigenen Zeile/Spalte.
+- **Konfigurator:** Pakete mit `data-furnish="inklusive"` (Komplett) enthalten die Möblierung – kein Aufpreis. Preise im Konfigurator, auf der Kostenseite und im Schema immer gemeinsam ändern.
+- **Drucken:** Reveal-on-scroll-Abschnitte waren beim Drucken unsichtbar; der Fix steht im `@media print`-Block von `styles.css` (inkl. `transition: none`).
+- **Akquise rechtssicher:** Erstkontakt zu Maklern nur per Brief oder persönlich – nicht per E-Mail/Kontaktformular/WhatsApp (§ 7 Abs. 2 UWG, auch B2B) und nicht per Kaltanruf. Siehe PLAN.md, Abschnitt 5.
 - **Fahrzeiten** auf Städteseiten sind per OSRM ab Bückeburger Str. 14 berechnet – nicht schätzen, die alten Schätzungen waren bis zu doppelt zu optimistisch.
 - **Preise im Fließtext** mit geschütztem Leerzeichen (`399&nbsp;€`), sonst bricht das €-Zeichen in eine eigene Zeile.
 - **Bei Preisen aufpassen:** Auf immobild.ai *dürfen* Preise stehen (Foto-Pakete sind standardisiert). Auf recmo.de **niemals** — dort haben Bestandskunden individuelle Konditionen.
