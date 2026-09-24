@@ -115,19 +115,32 @@ const packageSelect = document.getElementById("packageSelect");
 const objectType = document.getElementById("objectType");
 const sizeSelect = document.getElementById("sizeSelect");
 const leerCheck = document.getElementById("leerCheck");
+const leerRow = document.getElementById("leerRow");
+const leerIncluded = document.getElementById("leerIncluded");
 const totalPrice = document.getElementById("totalPrice");
 const summaryText = document.getElementById("summaryText");
+
+// Pakete mit data-furnish="inklusive" (Komplett) enthalten die virtuelle Möblierung bereits –
+// dann keinen Aufpreis berechnen und statt der Checkbox einen Hinweis zeigen. Die Auswahl
+// der Checkbox bleibt dabei erhalten, falls danach wieder ein anderes Paket gewählt wird.
+function furnishIncluded() {
+  if (!packageSelect) return false;
+  return packageSelect.options[packageSelect.selectedIndex].dataset.furnish === "inklusive";
+}
 
 function updateQuote() {
   if (!packageSelect || !sizeSelect || !totalPrice || !summaryText || !objectType) return;
   const pkg = packageSelect.options[packageSelect.selectedIndex];
   const size = sizeSelect.options[sizeSelect.selectedIndex];
+  const included = furnishIncluded();
+  if (leerRow) leerRow.hidden = included;
+  if (leerIncluded) leerIncluded.hidden = !included;
   const base = Number(pkg.dataset.price || 0);
   const sizePrice = Number(size.dataset.price || 0);
-  const leer = leerCheck && leerCheck.checked ? Number(leerCheck.dataset.price || 0) : 0;
+  const leer = !included && leerCheck && leerCheck.checked ? Number(leerCheck.dataset.price || 0) : 0;
   const total = base + sizePrice + leer;
   totalPrice.textContent = `ab ${total.toLocaleString("de-DE")} €`;
-  summaryText.textContent = `${objectType.value} · ${pkg.value} · ${size.value}${leer ? " · Möblierung" : ""}`;
+  summaryText.textContent = `${objectType.value} · ${pkg.value} · ${size.value}${included ? " · Möblierung inkl." : leer ? " · Möblierung" : ""}`;
 }
 [packageSelect, objectType, sizeSelect, leerCheck].forEach((el) => el && el.addEventListener("change", updateQuote));
 
@@ -169,7 +182,7 @@ if (quoteForm) {
       objectType: objectType ? objectType.value : "",
       package: packageSelect ? packageSelect.value : "",
       size: sizeSelect ? sizeSelect.value : "",
-      furnish: !!(leerCheck && leerCheck.checked),
+      furnish: furnishIncluded() || !!(leerCheck && leerCheck.checked),
       address: fieldVal("objectAddress"),
       message: fieldVal("cMessage"),
       price: totalPrice ? totalPrice.textContent : "",
@@ -243,3 +256,4 @@ updateQuote();
     banner.remove();
   });
 })();
+
