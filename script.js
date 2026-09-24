@@ -30,11 +30,26 @@ if (menuButton && nav) {
   if (!frame || !buttons.length) return;
   const imgs = Array.from(document.querySelectorAll(".stage-img"));
 
+  // Unsichtbare Modi (Drohne, 360°) tragen ihr Bild in data-src, damit sie beim
+  // Seitenaufbau nicht mit dem sichtbaren Hero-Bild (LCP) um Bandbreite konkurrieren.
+  function hydrate(im) {
+    if (!im.dataset.src) return;
+    if (im.dataset.srcset) im.srcset = im.dataset.srcset;
+    im.src = im.dataset.src;
+    delete im.dataset.src;
+    delete im.dataset.srcset;
+  }
+
   function show(mode) {
+    imgs.forEach((im) => { if (im.dataset.mode === mode) hydrate(im); });
     frame.setAttribute("data-mode", mode);
     imgs.forEach((im) => im.classList.toggle("is-active", im.dataset.mode === mode));
     buttons.forEach((b) => b.classList.toggle("is-active", b.dataset.mode === mode));
   }
+
+  const hydrateAll = () => setTimeout(() => imgs.forEach(hydrate), 300);
+  if (document.readyState === "complete") hydrateAll();
+  else window.addEventListener("load", hydrateAll, { once: true });
 
   buttons.forEach((b) => b.addEventListener("click", () => show(b.dataset.mode)));
   show("kamera");

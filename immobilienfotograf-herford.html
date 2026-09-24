@@ -41,7 +41,6 @@
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
     <link rel="preload" as="font" href="assets/fonts/PlusJakartaSans.woff2" type="font/woff2" crossorigin>
-    <link rel="preload" as="image" href="assets/ref-bedroom.webp" type="image/webp">
 
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
@@ -113,9 +112,9 @@
 
         <figure class="stage" aria-label="Aufnahmearten: Kamera, Drohne, 360-Grad-Rundgang">
           <div class="stage-frame">
-            <img class="stage-img is-active" data-mode="kamera" src="assets/ref-bedroom.webp" width="1264" height="848" alt="Immobilienfoto eines Schlafzimmers" fetchpriority="high" decoding="async">
-            <img class="stage-img" data-mode="drohne" src="assets/ref-drone.webp" width="1264" height="848" alt="Drohnenaufnahme eines Hauses aus der Luft" loading="lazy" decoding="async">
-            <img class="stage-img" data-mode="360" src="assets/ba-furnished.webp" width="1264" height="848" alt="Raum für den 360-Grad-Rundgang" loading="lazy" decoding="async">
+            <img class="stage-img is-active" data-mode="kamera" src="assets/ref-bedroom.webp" srcset="assets/ref-bedroom-640.webp 640w, assets/ref-bedroom-960.webp 960w, assets/ref-bedroom.webp 1264w" sizes="(max-width: 1020px) calc(100vw - 40px), 520px" width="1264" height="848" alt="Immobilienfoto eines Schlafzimmers" fetchpriority="high">
+            <img class="stage-img" data-mode="drohne" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/ref-drone.webp" data-srcset="assets/ref-drone-640.webp 640w, assets/ref-drone-960.webp 960w, assets/ref-drone.webp 1264w" sizes="(max-width: 1020px) calc(100vw - 40px), 520px" width="1264" height="848" alt="Drohnenaufnahme eines Hauses aus der Luft" decoding="async">
+            <img class="stage-img" data-mode="360" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="assets/ba-furnished.webp" data-srcset="assets/ba-furnished-640.webp 640w, assets/ba-furnished-960.webp 960w, assets/ba-furnished.webp 1264w" sizes="(max-width: 1020px) calc(100vw - 40px), 520px" width="1264" height="848" alt="Raum für den 360-Grad-Rundgang" decoding="async">
             <div class="stage-hud stage-hud-kamera" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
             <div class="stage-hud stage-hud-drohne" aria-hidden="true"><b>ALT 42 m</b><b>REC</b></div>
             <div class="stage-hud stage-hud-360" aria-hidden="true"><em>360°</em></div>
