@@ -3,16 +3,24 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Google tag (gtag.js) – Consent Mode: Analyse-Cookies erst nach Einwilligung, siehe cookie-consent.js -->
+    <!-- Google Analytics: gtag.js wird erst nach Einwilligung geladen (Banner in script.js).
+         Eine gespeicherte Einwilligung wird VOR 'config' gesetzt, damit der Seitenaufruf korrekt zählt. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', { analytics_storage: 'denied' });
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8G34GDTRKY"></script>
-    <script>
-      gtag('js', new Date());
-      gtag('config', 'G-8G34GDTRKY');
+      (function () {
+        var ok = false;
+        try { ok = localStorage.getItem('cookieConsent') === 'granted'; } catch (e) {}
+        gtag('consent', 'default', { analytics_storage: ok ? 'granted' : 'denied' });
+        gtag('js', new Date());
+        gtag('config', 'G-8G34GDTRKY');
+        if (ok) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-8G34GDTRKY';
+          document.head.appendChild(s);
+        }
+      })();
     </script>
     <title>Impressum | Immobild.ai</title>
     <meta name="description" content="Impressum von Immobild.ai – Immobilienfotografie, Drohnenaufnahmen und 360-Grad-Rundgänge für Makler. Ismail Khudida, Porta Westfalica.">

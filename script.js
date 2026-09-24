@@ -1,5 +1,18 @@
 const canAnimate = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* ---------- Lead-Messung: wird nur gesendet, wenn gtag.js nach Einwilligung geladen ist ---------- */
+function track(name, params) {
+  if (typeof gtag === "function") gtag("event", name, Object.assign({ page_path: location.pathname }, params));
+}
+document.addEventListener("click", (e) => {
+  const a = e.target.closest ? e.target.closest("a[href]") : null;
+  if (!a) return;
+  const href = a.getAttribute("href");
+  if (href.startsWith("tel:")) track("contact_click", { method: "telefon" });
+  else if (href.startsWith("mailto:")) track("contact_click", { method: "email" });
+  else if (href.includes("calendar.app.google")) track("contact_click", { method: "termin" });
+});
+
 /* ---------- Mobile menu ---------- */
 const menuButton = document.querySelector(".menu-button");
 const nav = document.querySelector(".nav");
@@ -177,6 +190,7 @@ if (quoteForm) {
       if (res.ok && out.ok) {
         quoteForm.hidden = true;
         if (successBox) successBox.hidden = false;
+        track("generate_lead", { lead_source: "anfrageformular", package: payload.package, object_type: payload.objectType });
       } else {
         setHint('Senden hat gerade nicht geklappt. Bitte direkt an <a href="mailto:info@immobild.ai">info@immobild.ai</a> schreiben.', true);
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = label; }
@@ -192,12 +206,12 @@ updateQuote();
 /* ---------- Cookie-Consent (Google Analytics) ---------- */
 (function cookieConsent() {
   const KEY = "cookieConsent";
+  const GA_SRC = "https://www.googletagmanager.com/gtag/js?id=G-8G34GDTRKY";
   let stored = null;
   try { stored = localStorage.getItem(KEY); } catch (_) {}
 
-  if (stored === "granted" && typeof gtag === "function") {
-    gtag("consent", "update", { analytics_storage: "granted" });
-  }
+  // Eine gespeicherte Einwilligung setzt bereits das Inline-Snippet im <head>
+  // (vor 'config', inkl. Laden von gtag.js) – hier nur noch der Banner für Erstbesucher.
   if (stored) return;
 
   const banner = document.createElement("div");
@@ -218,6 +232,13 @@ updateQuote();
     try { localStorage.setItem(KEY, choice); } catch (_) {}
     if (choice === "granted" && typeof gtag === "function") {
       gtag("consent", "update", { analytics_storage: "granted" });
+      // gtag.js erst jetzt laden: vor der Einwilligung gehen keine Daten an Google.
+      if (!document.querySelector(`script[src="${GA_SRC}"]`)) {
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = GA_SRC;
+        document.head.appendChild(s);
+      }
     }
     banner.remove();
   });
