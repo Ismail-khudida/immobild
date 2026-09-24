@@ -6,7 +6,7 @@
 
 - Spezialisiert auf Immobilien und Makler – keine Allround-Agentur: Aufnahmen, Bildbearbeitung und die Systeme dahinter kommen aus einer Hand.
 - Digitales Aufräumen und Bildoptimierung sind in jedem Paket enthalten; bewohnte oder unaufgeräumte Objekte sind kein Problem, leere Räume werden auf Wunsch virtuell möbliert.
-- Kurze Wege statt Anfahrtspauschalen-Poker: Sitz in Porta Westfalica, die meisten Objekte in Ostwestfalen und im Landkreis Schaumburg sind in 10–40 Fahrminuten erreichbar – das heißt kurzfristige Termine.
+- Kurze Wege: Sitz in Porta Westfalica direkt an der Landesgrenze – Bückeburg (ca. 5–10 Min.) und Rinteln (ca. 10–15 Min.) liegen näher als Herford (ca. 35–40 Min.) oder Bielefeld (ca. 45–55 Min.). Eine mögliche Anfahrtspauschale wird vorab genannt.
 - Der Eigentümer-Radar ist ein eigenes, live nutzbares Produkt (Demo: https://immobild.ai/bewertung.html) – kein zugekauftes Fremd-Tool: pro Makler individuell gebrandet, in die eigene Website einbettbar, jede Anfrage landet direkt beim Makler.
 - Ein Makler pro Stadt: Das System wird gebietsexklusiv vergeben, damit es dem Kunden Alleinaufträge bringt statt dem Wettbewerb.
 - Kunden arbeiten direkt mit dem Gründer – Ansprechpartner und Umsetzung sind dieselbe Person. Schwesterprojekt von RECmo.de Studio (https://recmo.de).
@@ -42,16 +42,20 @@
 - [Startseite](https://immobild.ai/): Leistungen, Vorher/Nachher-Beispiele, 360-Grad-Demo, Pakete und Anfrage
 - [Für Maklerbüros](https://immobild.ai/makler-system.html): Anfrage-Automatik, Eigentümer-Radar und Objekt-Seiten – ein Makler pro Stadt
 - [Immobilienbewertung](https://immobild.ai/bewertung.html): kostenlose Ersteinschätzung für Haus, Wohnung oder Grundstück – zugleich Live-Demo des Eigentümer-Radars
+- [Was kostet ein Immobilienfotograf?](https://immobild.ai/kosten-immobilienfotograf.html): Pakete, Größenzuschläge (bis 80 m² kein Zuschlag, 80–160 m² +120 €, 160–300 m² +260 €, über 300 m² +480 €, jeweils netto), Rechenbeispiel und Vergleichs-Checkliste
 - [Immobilienfotograf Minden](https://immobild.ai/immobilienfotograf-minden.html)
 - [Immobilienfotograf Bad Oeynhausen](https://immobild.ai/immobilienfotograf-bad-oeynhausen.html)
 - [Immobilienfotograf Herford](https://immobild.ai/immobilienfotograf-herford.html)
 - [Immobilienfotograf Bielefeld](https://immobild.ai/immobilienfotograf-bielefeld.html)
 - [Immobilienfotograf Lübbecke](https://immobild.ai/immobilienfotograf-luebbecke.html)
+- [Immobilienfotograf Bückeburg](https://immobild.ai/immobilienfotograf-bueckeburg.html)
+- [Immobilienfotograf Rinteln](https://immobild.ai/immobilienfotograf-rinteln.html)
+- [Immobilienfotograf Stadthagen](https://immobild.ai/immobilienfotograf-stadthagen.html)
 - [Impressum](https://immobild.ai/impressum.html) · [Datenschutz](https://immobild.ai/datenschutz.html)
 
 ## Einsatzgebiet
 
-- Kerngebiet Ostwestfalen: Porta Westfalica, Minden, Bad Oeynhausen, Herford, Bielefeld, Lübbecke und Umgebung
-- Angrenzendes Niedersachsen: Landkreis Schaumburg (Bückeburg, Rinteln, Stadthagen) und Weserbergland – von Porta Westfalica aus näher als manche NRW-Stadt
+- Ostwestfalen (NRW), Fahrzeit ab Porta Westfalica ca.: Minden 15–20 Min., Bad Oeynhausen 25–30 Min., Herford 35–40 Min., Lübbecke 35–40 Min., Bielefeld 45–55 Min.
+- Landkreis Schaumburg (Niedersachsen), Fahrzeit ca.: Bückeburg 5–10 Min., Rinteln 10–15 Min., Stadthagen 25–30 Min. – von Porta Westfalica aus näher als die meisten NRW-Städte
 - Auf Anfrage: Räume Osnabrück und Hannover
 - Ablauf: kurzes Gespräch zu Objekt und Ziel, Termin vor Ort (meist ohne größere Vorbereitung), digitale Übergabe in der Regel innerhalb einer Woche
