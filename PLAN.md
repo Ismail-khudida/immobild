@@ -49,6 +49,24 @@ Ursprüngliche Anforderungen (erfüllt):
 
 **Rechtliches nicht vergessen:** DSGVO-Hinweis vor dem Absenden, Einwilligung für die Nachfass-Strecke, Impressumspflicht beim Makler, klare Kennzeichnung als unverbindliche Schätzung.
 
+## 4b) SEO- und Performance-Runde (24.09.2026) — ERLEDIGT
+
+Gemessen, umgesetzt, live verifiziert (Details in den Commits vom 24.09.):
+
+- **Mobile Performance:** Startseite Lighthouse 74 → 98, LCP 6,3 s → 1,8 s, Datenmenge 1.277 → 572 KB; Städteseiten LCP 3,8 → 1,6 s. Barrierefreiheit 96–97 → 100.
+- **Städteseiten entdupliziert:** Textüberlappung 41–55 % → 24–36 %, je Seite eigener, belegter Lokalinhalt. Fahrzeiten korrigiert (waren teils doppelt zu optimistisch).
+- **Niedersachsen:** Bückeburg, Rinteln, Stadthagen als eigene Seiten — laut SERP-Recherche die am schwächsten besetzten Märkte. Positionierung „Ostwestfalen und Schaumburg aus einer Hand“ (Nische ist unbesetzt).
+- **Neue Seite „Was kostet ein Immobilienfotograf?“:** kein regionaler Wettbewerber nennt Preise — Alleinstellungsmerkmal.
+- **Analytics erst nach Einwilligung** (vorher Widerspruch zur Datenschutzerklärung) + Lead-Messung (`generate_lead`, `contact_click`).
+- **Fixes:** FAQ-Schema der Startseite war nicht synchron (Richtlinienverstoß), Textlink-Kontrast, unsichtbare Textlinks.
+- **Werkzeuge:** `scripts/seo-check.mjs` (QA vor jedem Commit), `scripts/staedte.mjs` (Städteseiten-Generator).
+
+**Noch offen (SEO):**
+1. **Google Business Profile verifizieren** (Video) — bleibt der größte einzelne Hebel für lokale Anfragen.
+2. **SEMrush:** Abo aktiv, aber 0 API-Units für MCP — Keyword-Volumen, Backlinks, Rankings, Wettbewerber-Gap erst nach Aufstockung (semrush.com/mcp-access). Position Tracking im SEMrush-Projekt steht auf USA/Englisch → auf Deutschland umstellen.
+3. **Branchenverzeichnisse (NAP-Einträge, Konto nötig → Ismail):** gelbeseiten.de, 11880.com, meinestadt.de, trustlocal.de, houzz.de, offenblende.de (Fotografen-Marktplatz). Überall exakt: „Immobild.ai · Bückeburger Str. 14, 32457 Porta Westfalica · 0178 3248904 · https://immobild.ai“.
+4. **Echte Referenzen:** Sobald der erste Makler-Auftrag da ist, eigene Objektfotos je Stadt statt Beispielbildern — stärkster Hebel gegen Duplicate Content und für Vertrauen.
+
 ## 5) Was Ismail tun muss (kann keine Software erledigen)
 
 1. **Liste bauen** — Makler in Minden, Porta Westfalica, Bad Oeynhausen, Herford, Bielefeld, Lübbecke, Osnabrück, Hannover. Über ImmoScout24-Maklersuche, Google Maps, IVD-Verzeichnis. Realistisch 150–300 Namen, ein paar Stunden Arbeit.
