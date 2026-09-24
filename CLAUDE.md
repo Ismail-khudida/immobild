@@ -14,6 +14,8 @@
 
 Der **Cloudflare Worker in `worker/`** ist getrennt davon und wird mit `npx wrangler deploy` aus diesem Ordner ausgerollt. Er nimmt das Kontaktformular entgegen und verschickt per Resend an `ismail.khudida@recmo.de`. Der `RESEND_API_KEY` ist ein Secret, steht nicht in `wrangler.toml`.
 
+**E-Mail-Empfang** (seit 25.09.2026): DNS liegt bei Cloudflare; **Cloudflare Email Routing** leitet `info@immobild.ai` und per Catch-all alle anderen Adressen an `ismail.khudida@recmo.de` weiter (MX route1–3.mx.cloudflare.net, SPF `include:_spf.mx.cloudflare.net`, DKIM `cf2024-1`). Vorher gab es nach dem DNS-Umzug von Namecheap **keinen MX** – Mails an info@ kamen monatelang zurück. Versand läuft getrennt über Resend (`resend._domainkey`, `send.immobild.ai`); diese Einträge nie anfassen. Prüfen: `dig +short MX immobild.ai`.
+
 ## Aufbau
 
 Statisches HTML, kein Build-Schritt. Gemeinsames `styles.css`, gemeinsames `script.js`, selbstgehostete Schrift (`assets/fonts/PlusJakartaSans.woff2`).
